@@ -11,6 +11,7 @@ import {
   updateCards,
   updateCompoundInfo,
   resetSelections,
+  setSortType,
 } from "./actions";
 import { getAvailableRecipes } from "./selectors";
 
@@ -22,6 +23,7 @@ const initialState: Readonly<StateType> = {
   result: null,
   newResult: null,
   compoundStatus: "0",
+  sortBy: "time",
 };
 
 const getSelectedRearrangeType = (
@@ -71,6 +73,25 @@ const computeResult = (state: StateType) => {
 };
 
 export default createReducer<StateType, ActionType>(initialState)
+  .handleAction(setSortType, (state, { payload }) => ({
+    ...state,
+    sortBy: payload,
+  }))
+  .handleAction(resetSelections, (state) => ({
+    ...state,
+    firstSelectedElement: null,
+    secondSelectedElement: null,
+    result: null,
+  }))
+  .handleAction(updateCards, (state) => {
+    if (state.newOpenedElements) {
+      return {
+        ...state,
+        openedElements: [...state.newOpenedElements],
+        newOpenedElements: null,
+      };
+    } else return state;
+  })
   .handleAction(processSelectedCard, (state, { payload }) => {
     let {
       secondSelectedElement,
@@ -124,15 +145,6 @@ export default createReducer<StateType, ActionType>(initialState)
       compoundStatus,
     };
   })
-  .handleAction(updateCards, (state) => {
-    if (state.newOpenedElements) {
-      return {
-        ...state,
-        openedElements: [...state.newOpenedElements],
-        newOpenedElements: null,
-      };
-    } else return state;
-  })
   .handleAction(updateCompoundInfo, (state) => {
     let {
       firstSelectedElement,
@@ -157,10 +169,4 @@ export default createReducer<StateType, ActionType>(initialState)
       result,
       compoundStatus: "0",
     };
-  })
-  .handleAction(resetSelections, (state) => ({
-    ...state,
-    firstSelectedElement: null,
-    secondSelectedElement: null,
-    result: null,
-  }));
+  });
