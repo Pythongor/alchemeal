@@ -1,0 +1,166 @@
+@import "../../assets/styles/constants.scss";
+
+.card {
+  margin: 10px;
+  height: 140px;
+  width: 96px;
+  border-radius: 10px;
+  font-family: "Lobster Two";
+  background-image: url(../../assets/images/textures/black-thread.png);
+  transition: transform 0.3s, box-shadow 0.2s;
+  position: relative;
+  box-shadow: 2px 5px 5px 3px;
+  &:hover {
+    filter: contrast(1.75);
+    transform: scale(1.1);
+    box-shadow: 3px 15px 5px 3px rgba(black, 0.5);
+  }
+  &__animal {
+    background-color: $animalBackground;
+    border: 2px solid $animalText;
+    .card_title {
+      color: $animalText;
+    }
+    .card_image {
+      filter: invert(22%) sepia(12%) saturate(2485%) hue-rotate(20deg)
+        brightness(100%) contrast(87%);
+    }
+  }
+  &__creature {
+    background-color: $creatureBackground;
+    border: 2px solid $creatureText;
+    .card_title {
+      color: $creatureText;
+    }
+    .card_image {
+      filter: invert(14%) sepia(22%) saturate(5628%) hue-rotate(25deg)
+        brightness(87%) contrast(86%);
+    }
+  }
+  &__drink {
+    background-color: $drinkBackground;
+    border: 2px solid $drinkText;
+    .card_title {
+      color: $drinkText;
+    }
+    .card_image {
+      filter: invert(19%) sepia(62%) saturate(555%) hue-rotate(151deg)
+        brightness(91%) contrast(87%);
+    }
+  }
+  &__meat {
+    background-color: $meatBackground;
+    border: 2px solid $meatText;
+    .card_title {
+      color: $meatText;
+    }
+    .card_image {
+      filter: invert(13%) sepia(28%) saturate(1950%) hue-rotate(321deg)
+        brightness(86%) contrast(94%);
+    }
+  }
+  &__milk {
+    background-color: $milkBackground;
+    border: 2px solid $milkText;
+    .card_title {
+      color: $milkText;
+    }
+    .card_image {
+      filter: invert(36%) sepia(22%) saturate(411%) hue-rotate(121deg)
+        brightness(90%) contrast(84%);
+    }
+  }
+  &__other {
+    background-color: $otherBackground;
+    border: 2px solid $otherText;
+    .card_title {
+      color: $otherText;
+    }
+    .card_image {
+      filter: invert(17%) sepia(14%) saturate(764%) hue-rotate(195deg)
+        brightness(96%) contrast(90%);
+    }
+  }
+  &__plant {
+    background-color: $plantBackground;
+    border: 2px solid $plantText;
+    .card_title {
+      color: $plantText;
+    }
+    .card_image {
+      filter: invert(20%) sepia(62%) saturate(287%) hue-rotate(87deg)
+        brightness(100%) contrast(92%);
+    }
+  }
+  &__semifinished {
+    background-color: $semifinishedBackground;
+    border: 2px solid $semifinishedText;
+    .card_title {
+      color: $semifinishedText;
+    }
+    .card_image {
+      filter: invert(23%) sepia(11%) saturate(946%) hue-rotate(49deg)
+        brightness(96%) contrast(91%);
+    }
+  }
+  &__snack {
+    background-color: $snackBackground;
+    border: 2px solid $snackText;
+    .card_title {
+      color: $snackText;
+    }
+    .card_image {
+      filter: invert(20%) sepia(52%) saturate(934%) hue-rotate(356deg)
+        brightness(101%) contrast(90%);
+    }
+  }
+  &__faded {
+    transform: scale(0%) rotate(180deg);
+  }
+  &__selected {
+    box-shadow: 0px 0px 29px 5px rgba($pink, 0.8), 0px 5px 5px 3px;
+    &:hover {
+      box-shadow: 0px 0px 29px 5px rgba($pink, 0.8),
+        3px 15px 5px 3px rgba(black, 0.3);
+    }
+  }
+  &__new_result {
+    animation: new_result 1s infinite;
+    box-shadow: 0px 0px 50px 20px $animalBackground;
+  }
+  &__decorative {
+    &:hover {
+      transform: none;
+      transition: filter 0.2s;
+    }
+  }
+  &_title {
+    text-align: center;
+    width: 90%;
+    margin: 5px auto;
+    font-size: 20px;
+  }
+  &_image-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 65px;
+    bottom: 10px;
+  }
+  &_image {
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+@keyframes new_result {
+  0% {
+    box-shadow: 0px 0px 50px 20px $animalBackground;
+  }
+  50% {
+    box-shadow: 0px 0px 30px 10px $animalBackground;
+  }
+  100% {
+    box-shadow: 0px 0px 50px 20px $animalBackground;
+  }
+}

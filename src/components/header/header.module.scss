@@ -1,0 +1,77 @@
+@import "../../assets/styles/constants.scss";
+
+.container {
+  width: 100%;
+  max-width: stretch;
+  height: 50px;
+  margin: 20px 30px;
+  border-radius: 20px;
+  border: 5px groove $darkGreen;
+  background-color: $cyan;
+  background-image: url(../../assets/images/textures/black-thread-light.png);
+  display: flex;
+  align-items: center;
+  padding: 20px 30px;
+  justify-content: space-between;
+  box-shadow: 0px 0px 5px 3px black inset;
+}
+
+.logo {
+  font-family: "Staatliches", cursive;
+  font-size: 40px;
+  color: $darkGreen;
+}
+
+.right-content {
+  display: flex;
+  justify-content: space-between;
+  width: 525px;
+}
+
+.tips {
+  height: 40px;
+  width: 40px;
+  background-image: url("../../assets/images/UIicons/idea.png");
+  background-position: 100%;
+  background-size: cover;
+  filter: invert(13%) sepia(19%) saturate(2492%) hue-rotate(140deg)
+    brightness(99%) contrast(102%);
+  &:hover {
+    filter: invert(57%) sepia(10%) saturate(4683%) hue-rotate(25deg)
+      brightness(96%) contrast(88%);
+  }
+}
+
+.sort {
+  padding: 0 5px;
+  border-radius: 10px;
+  background-color: $green;
+  border: 5px solid $darkGreen;
+  font-family: "Rowdies";
+  font-size: 20px;
+  color: $cyan;
+  &:hover {
+    color: $animalBackground;
+  }
+  &:active {
+    background-color: $animalText;
+    border-color: $animalBackground;
+  }
+}
+
+.scores {
+  font-family: "Rowdies";
+  font-size: 26px;
+  line-height: 40px;
+  color: $green;
+  &__completed {
+    color: $animalBackground;
+  }
+}
+
+.dead-ends {
+  font-family: "Rowdies";
+  font-size: 20px;
+  line-height: 40px;
+  color: $green;
+}
