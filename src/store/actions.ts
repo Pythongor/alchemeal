@@ -7,3 +7,7 @@ export const processSelectedCard = createAction(
 )<ElementEntriesType>();
 
 export const updateCards = createAction(Actions.updateCards)();
+
+export const updateCompoundInfo = createAction(Actions.updateCompoundInfo)();
+
+export const resetSelections = createAction(Actions.resetSelections)();

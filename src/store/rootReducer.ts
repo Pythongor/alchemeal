@@ -6,7 +6,12 @@ import {
   ElementEntriesType,
   ElementType,
 } from "../recipes";
-import { processSelectedCard, updateCards } from "./actions";
+import {
+  processSelectedCard,
+  updateCards,
+  updateCompoundInfo,
+  resetSelections,
+} from "./actions";
 import { getAvailableRecipes } from "./selectors";
 
 const initialState: Readonly<StateType> = {
@@ -16,7 +21,7 @@ const initialState: Readonly<StateType> = {
   secondSelectedElement: null,
   result: null,
   newResult: null,
-  compoundStatus: null,
+  compoundStatus: "0",
 };
 
 const getSelectedRearrangeType = (
@@ -72,40 +77,32 @@ export default createReducer<StateType, ActionType>(initialState)
       firstSelectedElement,
       result,
       openedElements,
-      newOpenedElements,
       newResult,
+      compoundStatus,
     } = state;
     newResult = null;
-    const status = getSelectedRearrangeType(state, payload);
-    if (status === "0") {
+    compoundStatus = getSelectedRearrangeType(state, payload);
+    if (compoundStatus === "0") {
       return state;
-    }
-    if (status === "-2") {
-      secondSelectedElement = null;
-      result = null;
-    } else if (status === "1=2 -2") {
+    } else if (compoundStatus === "1=2 -2") {
       firstSelectedElement = secondSelectedElement;
-      secondSelectedElement = null;
-      result = null;
-    } else if (status === "!") {
+    } else if (compoundStatus === "!") {
       secondSelectedElement = payload;
-      result = computeResult({ ...state, secondSelectedElement });
-      if (result) {
-        newOpenedElements = [...openedElements] as ElementType[];
-        if (typeof result[0] === "string") {
-          if (!newOpenedElements.includes(result[0])) {
-            newOpenedElements.push(result[0]);
-            newResult = result[0];
+      const resulted = computeResult({ ...state, secondSelectedElement });
+      if (resulted) {
+        openedElements = [...openedElements] as ElementType[];
+        result = resulted;
+        if (typeof resulted[0] === "string") {
+          if (!openedElements.includes(resulted[0])) {
+            openedElements.push(resulted[0]);
+            newResult = resulted[0];
           }
         } else {
-          result = result as ElementEntriesType[];
+          result = resulted as ElementEntriesType[];
           const newResults: ElementType[] = [];
           result.forEach((el) => {
-            if (
-              newOpenedElements?.length &&
-              !newOpenedElements.includes(el[0])
-            ) {
-              newOpenedElements.push(el[0]);
+            if (openedElements?.length && !openedElements.includes(el[0])) {
+              openedElements.push(el[0]);
               newResults.push(el[0]);
             }
           });
@@ -113,33 +110,57 @@ export default createReducer<StateType, ActionType>(initialState)
             newResult = newResults;
           }
         }
-      }
-    } else if (status === "-1") {
-      firstSelectedElement = null;
-      result = null;
-    } else {
+      } else compoundStatus = "-";
+    } else if (compoundStatus === "1") {
       firstSelectedElement = payload;
-      result = null;
     }
     return {
       ...state,
       secondSelectedElement,
       firstSelectedElement,
       result,
-      newOpenedElements,
+      openedElements,
       newResult,
+      compoundStatus,
     };
   })
   .handleAction(updateCards, (state) => {
-    console.log(state.newOpenedElements);
     if (state.newOpenedElements) {
       return {
         ...state,
         openedElements: [...state.newOpenedElements],
         newOpenedElements: null,
-        // firstSelectedElement: null,
-        // secondSelectedElement: null,
-        // result: null,
       };
     } else return state;
-  });
+  })
+  .handleAction(updateCompoundInfo, (state) => {
+    let {
+      firstSelectedElement,
+      secondSelectedElement,
+      result,
+      compoundStatus,
+    } = state;
+    if (compoundStatus === "-") {
+      result = null;
+    } else if (["-2", "1=2 -2", "1"].includes(compoundStatus)) {
+      secondSelectedElement = null;
+      result = null;
+    } else if (compoundStatus === "-1") {
+      firstSelectedElement = null;
+      secondSelectedElement = null;
+      result = null;
+    }
+    return {
+      ...state,
+      firstSelectedElement,
+      secondSelectedElement,
+      result,
+      compoundStatus: "0",
+    };
+  })
+  .handleAction(resetSelections, (state) => ({
+    ...state,
+    firstSelectedElement: null,
+    secondSelectedElement: null,
+    result: null,
+  }));

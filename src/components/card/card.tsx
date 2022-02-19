@@ -12,6 +12,7 @@ type OwnProps = {
   type: FoodType;
   isDecorative?: boolean;
   isNewResult?: boolean;
+  willUnmount?: boolean;
 };
 
 type StateProps = ReturnType<typeof MSTP>;
@@ -26,6 +27,7 @@ const Card: React.FC<CardProps> = ({
   isDecorative = false,
   processSelectedCard,
   isNewResult,
+  willUnmount,
 }) => {
   const [isFaded, setFaded] = useState<boolean>(true);
   if (isFaded) {
@@ -43,7 +45,7 @@ const Card: React.FC<CardProps> = ({
           ].includes(title),
         },
         { [styles.card__decorative]: isDecorative },
-        { [styles.card__faded]: isFaded },
+        { [styles.card__faded]: isFaded || willUnmount },
         { [styles.card__new_result]: isNewResult }
       )}
       onClick={() => processSelectedCard([title, type])}

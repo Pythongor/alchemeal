@@ -14,12 +14,17 @@ const CompoundInfo: React.FC<CompoundInfoProps> = ({
   secondSelectedElement,
   result,
   newResult,
+  compoundStatus,
 }) => {
   const resultInfo = result
     ? typeof result[0] === "string"
       ? (result as ElementEntriesType)
       : result[0]
     : null;
+  const firstWillUnmount = ["-1", "1=2 -2"].includes(compoundStatus);
+  const secondWillUnmount = ["-1", "-2", "1=2 -2", "1", "-", "!"].includes(
+    compoundStatus
+  );
   return (
     <div className={styles.wrapper}>
       <div className={styles["card-holder"]}>
@@ -28,6 +33,7 @@ const CompoundInfo: React.FC<CompoundInfoProps> = ({
             isDecorative={true}
             title={firstSelectedElement[0]}
             type={firstSelectedElement[1]}
+            willUnmount={firstWillUnmount}
           />
         )}
       </div>
@@ -38,6 +44,7 @@ const CompoundInfo: React.FC<CompoundInfoProps> = ({
             isDecorative={true}
             title={secondSelectedElement[0]}
             type={secondSelectedElement[1]}
+            willUnmount={secondWillUnmount}
           />
         )}
       </div>
@@ -48,6 +55,7 @@ const CompoundInfo: React.FC<CompoundInfoProps> = ({
             isDecorative={true}
             title={resultInfo[0]}
             type={resultInfo[1]}
+            willUnmount={secondWillUnmount}
             isNewResult={!!newResult}
           />
         )}
@@ -61,11 +69,13 @@ const MSTP = ({
   secondSelectedElement,
   result,
   newResult,
+  compoundStatus,
 }: StateType) => ({
   firstSelectedElement,
   secondSelectedElement,
   result,
   newResult,
+  compoundStatus,
 });
 
 const MDTP = {};

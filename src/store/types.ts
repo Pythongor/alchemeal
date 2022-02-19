@@ -2,14 +2,7 @@ import { ActionType as ActType } from "typesafe-actions";
 import { ElementType, ElementEntriesType } from "recipes";
 import * as actions from "./actions";
 
-export type CompoundStatusType =
-  | "1=2 -2"
-  | "-2"
-  | "-1"
-  | "0"
-  | "1"
-  | "!"
-  | null;
+export type CompoundStatusType = "1=2 -2" | "-2" | "-1" | "0" | "1" | "!" | "-";
 
 export type StateType = {
   openedElements: ElementType[];
@@ -24,6 +17,8 @@ export type StateType = {
 export enum Actions {
   processSelectedCard = "PROCESS_SELECTED_CARD",
   updateCards = "UPDATE_CARDS",
+  updateCompoundInfo = "UPDATE_COMPOUND_INFO",
+  resetSelections = "RESET_SELECTIONS",
 }
 
 export type ActionType = ActType<typeof actions>;
