@@ -28,7 +28,7 @@ export const startElements: ElementType[] = [
   "earth",
   "furnace",
   "ice",
-  "instrument",
+  "tool",
 ];
 
 export const elementsList = [
@@ -36,7 +36,7 @@ export const elementsList = [
   "earth",
   "furnace",
   "ice",
-  "instrument",
+  "tool",
   "bacteria",
   "egg",
   "meat",
@@ -64,7 +64,7 @@ export const allElements: ElementsType = {
   earth: "other",
   furnace: "other",
   ice: "other",
-  instrument: "other",
+  tool: "other",
   bacteria: "creature",
   egg: "animal",
   meat: "meat",
@@ -90,17 +90,17 @@ export const allElements: ElementsType = {
 const recipes: RecipesType = [
   [["animal", "earth"], "bacteria"],
   [
-    ["animal", "instrument"],
+    ["animal", "tool"],
     ["egg", "meat", "milk"],
   ],
-  [["earth", "instrument"], "arable"],
+  [["earth", "tool"], "arable"],
   [["furnace", "ice"], "water"],
   [["furnace", "water"], "boiling water"],
   [["egg", "furnace"], "omelette"],
   [["furnace", "meat"], "kebab"],
   [["furnace", "omelette"], "burned something"],
   [["furnace", "kebab"], "burned something"],
-  [["instrument", "meat"], "forcemeat"],
+  [["tool", "meat"], "forcemeat"],
   [["bacteria", "milk"], "kefir"],
   [["bacteria", "kefir"], "sour cream"],
   [["bacteria", "sour cream"], "cheese"],

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { StateType } from "store/types";
 import { processSelectedCard } from "store/actions";
 import { ElementType, FoodType } from "recipes";
-import Earth from "assets/images/icons/earth.png";
+import images from "./cardImages";
 import styles from "./card.module.scss";
 
 type OwnProps = {
@@ -55,7 +55,7 @@ const Card: React.FC<CardProps> = ({
     >
       <div className={styles.card_title}>{title}</div>
       <div className={styles["card_image-wrapper"]}>
-        <img className={styles.card_image} src={Earth} alt=""></img>
+        <img className={styles.card_image} src={images[title]} alt=""></img>
       </div>
     </div>
   );
