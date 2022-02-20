@@ -5,7 +5,6 @@
   height: 140px;
   width: 96px;
   border-radius: 10px;
-  font-family: "Lobster Two";
   background-image: url(../../assets/images/textures/black-thread.png);
   transition: transform 0.3s, box-shadow 0.2s;
   position: relative;
@@ -22,15 +21,15 @@
       color: $animalText;
     }
     .card_image {
-      filter: invert(22%) sepia(12%) saturate(2485%) hue-rotate(20deg)
-        brightness(100%) contrast(87%);
+      filter: invert(14%) sepia(22%) saturate(5628%) hue-rotate(25deg)
+        brightness(87%) contrast(86%);
     }
   }
-  &__creature {
-    background-color: $creatureBackground;
-    border: 2px solid $creatureText;
+  &__bakery {
+    background-color: $bakeryBackground;
+    border: 2px solid $bakeryText;
     .card_title {
-      color: $creatureText;
+      color: $bakeryText;
     }
     .card_image {
       filter: invert(14%) sepia(22%) saturate(5628%) hue-rotate(25deg)
@@ -46,6 +45,28 @@
     .card_image {
       filter: invert(19%) sepia(62%) saturate(555%) hue-rotate(151deg)
         brightness(91%) contrast(87%);
+    }
+  }
+  &__fastfood {
+    background-color: $fastfoodBackground;
+    border: 2px solid $fastfoodText;
+    .card_title {
+      color: $fastfoodText;
+    }
+    .card_image {
+      filter: invert(20%) sepia(52%) saturate(934%) hue-rotate(356deg)
+        brightness(101%) contrast(90%);
+    }
+  }
+  &__inedible {
+    background-color: $inedibleBackground;
+    border: 2px solid $inedibleText;
+    .card_title {
+      color: $inedibleText;
+    }
+    .card_image {
+      filter: invert(17%) sepia(14%) saturate(764%) hue-rotate(195deg)
+        brightness(96%) contrast(90%);
     }
   }
   &__meat {
@@ -77,8 +98,8 @@
       color: $otherText;
     }
     .card_image {
-      filter: invert(17%) sepia(14%) saturate(764%) hue-rotate(195deg)
-        brightness(96%) contrast(90%);
+      filter: invert(13%) sepia(37%) saturate(4868%) hue-rotate(292deg)
+        brightness(92%) contrast(96%);
     }
   }
   &__plant {
@@ -92,26 +113,26 @@
         brightness(100%) contrast(92%);
     }
   }
-  &__semifinished {
-    background-color: $semifinishedBackground;
-    border: 2px solid $semifinishedText;
+  &__sweet {
+    background-color: $sweetBackgriound;
+    border: 2px solid $sweetText;
     .card_title {
-      color: $semifinishedText;
+      color: $sweetText;
     }
     .card_image {
-      filter: invert(23%) sepia(11%) saturate(946%) hue-rotate(49deg)
+      filter: invert(14%) sepia(52%) saturate(1336%) hue-rotate(250deg)
         brightness(96%) contrast(91%);
     }
   }
-  &__snack {
-    background-color: $snackBackground;
-    border: 2px solid $snackText;
+  &__vegan {
+    background-color: $veganBackground;
+    border: 2px solid $veganText;
     .card_title {
-      color: $snackText;
+      color: $veganText;
     }
     .card_image {
-      filter: invert(20%) sepia(52%) saturate(934%) hue-rotate(356deg)
-        brightness(101%) contrast(90%);
+      filter: invert(20%) sepia(62%) saturate(287%) hue-rotate(87deg)
+        brightness(100%) contrast(92%);
     }
   }
   &__faded {
@@ -148,6 +169,8 @@
     width: 90%;
     margin: 5px auto;
     font-size: 20px;
+    font-family: "Lobster Two";
+    word-break: break-word;
   }
   &_image-wrapper {
     position: absolute;
