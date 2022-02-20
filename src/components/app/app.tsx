@@ -38,7 +38,7 @@ const App: React.FC<AppProps> = ({
         const isElementCard = [...element.classList].some((className) =>
           className.includes("card_card_")
         );
-        if (!isElementCard) resetSelections();
+        if (!isElementCard && element.tagName !== "BUTTON") resetSelections();
       }}
     >
       <Header />

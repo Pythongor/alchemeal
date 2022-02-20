@@ -25,7 +25,7 @@
 .right-content {
   display: flex;
   justify-content: space-between;
-  width: 525px;
+  width: 570px;
 }
 
 .tips {
@@ -42,7 +42,7 @@
   }
 }
 
-.sort {
+.button {
   padding: 0 5px;
   border-radius: 10px;
   background-color: $green;
@@ -50,6 +50,7 @@
   font-family: "Rowdies";
   font-size: 20px;
   color: $cyan;
+  width: 220px;
   &:hover {
     color: $animalBackground;
   }

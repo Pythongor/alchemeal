@@ -13,6 +13,7 @@ type OwnProps = {
   isDecorative?: boolean;
   isNewResult?: boolean;
   willUnmount?: boolean;
+  isDeadEnd?: boolean;
 };
 
 type StateProps = ReturnType<typeof MSTP>;
@@ -28,6 +29,7 @@ const Card: React.FC<CardProps> = ({
   processSelectedCard,
   isNewResult,
   willUnmount,
+  isDeadEnd,
 }) => {
   const [isFaded, setFaded] = useState<boolean>(true);
   if (isFaded) {
@@ -46,7 +48,8 @@ const Card: React.FC<CardProps> = ({
         },
         { [styles.card__decorative]: isDecorative },
         { [styles.card__faded]: isFaded || willUnmount },
-        { [styles.card__new_result]: isNewResult }
+        { [styles["card__new-result"]]: isNewResult },
+        { [styles["card__dead-end"]]: isDeadEnd }
       )}
       onClick={() => processSelectedCard([title, type])}
     >

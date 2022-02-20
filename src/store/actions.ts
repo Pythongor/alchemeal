@@ -1,5 +1,5 @@
 import { createAction } from "typesafe-actions";
-import { Actions, SortType } from "./types";
+import { Actions } from "./types";
 import { ElementEntriesType } from "recipes";
 
 export const processSelectedCard = createAction(
@@ -12,4 +12,6 @@ export const updateCompoundInfo = createAction(Actions.updateCompoundInfo)();
 
 export const resetSelections = createAction(Actions.resetSelections)();
 
-export const setSortType = createAction(Actions.setSortType)<SortType>();
+export const setSortType = createAction(Actions.setSortType)();
+
+export const setDeadEndsType = createAction(Actions.setDeadEndsType)();

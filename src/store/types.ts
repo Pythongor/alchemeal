@@ -6,6 +6,8 @@ export type CompoundStatusType = "1=2 -2" | "-2" | "-1" | "0" | "1" | "!" | "-";
 
 export type SortType = "alphabet" | "type" | "time";
 
+export type DeadEndsType = "hide" | "show" | "exclude";
+
 export type StateType = {
   openedElements: ElementType[];
   newOpenedElements: ElementType[] | null;
@@ -15,6 +17,7 @@ export type StateType = {
   newResult: ElementType | ElementType[] | null;
   compoundStatus: CompoundStatusType;
   sortBy: SortType;
+  deadEndsStatus: DeadEndsType;
 };
 
 export enum Actions {
@@ -23,6 +26,7 @@ export enum Actions {
   updateCompoundInfo = "UPDATE_COMPOUND_INFO",
   resetSelections = "RESET_SELECTIONS",
   setSortType = "SET_SORT_TYPE",
+  setDeadEndsType = "SET_DEAD_ENDS_TYPE",
 }
 
 export type ActionType = ActType<typeof actions>;

@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { connect } from "react-redux";
 import { elementsList } from "recipes";
-import { setSortType } from "store/actions";
+import { setSortType, setDeadEndsType } from "store/actions";
 import { StateType, SortType } from "store/types";
 import styles from "./header.module.scss";
 
@@ -10,31 +10,30 @@ type StateProps = ReturnType<typeof MSTP>;
 type DispatchProps = typeof MDTP;
 type HeaderProps = StateProps & DispatchProps;
 
-type SortsAttributesType = {
-  [key in SortType]: { sortText: string; nextSortType: SortType };
-};
-
-const sortsAttributes: SortsAttributesType = {
-  alphabet: { sortText: "alphabet", nextSortType: "type" },
-  type: { sortText: "type", nextSortType: "time" },
-  time: { sortText: "opening order", nextSortType: "alphabet" },
+const sortsTextes: {
+  [key in SortType]: string;
+} = {
+  alphabet: "alphabet",
+  type: "type",
+  time: "opening order",
 };
 
 const Header: React.FC<HeaderProps> = ({
   openedElements,
   sortBy,
+  deadEndsStatus,
   setSortType,
+  setDeadEndsType,
 }) => {
-  const { sortText, nextSortType } = sortsAttributes[sortBy];
+  const sortText = sortsTextes[sortBy];
   return (
     <div className={styles.container}>
       <div className={styles.logo}>AlcheMeal</div>
       <div className={styles["right-content"]}>
-        <button className={styles.sort}>Remove dead ends</button>
-        <button
-          onClick={() => setSortType(nextSortType)}
-          className={styles.sort}
-        >
+        <button onClick={() => setDeadEndsType()} className={styles.button}>
+          {deadEndsStatus[0].toUpperCase() + deadEndsStatus.slice(1)} dead ends
+        </button>
+        <button onClick={() => setSortType()} className={styles.button}>
           Sort by: {sortText}
         </button>
         <div
@@ -51,11 +50,12 @@ const Header: React.FC<HeaderProps> = ({
   );
 };
 
-const MSTP = ({ openedElements, sortBy }: StateType) => ({
+const MSTP = ({ openedElements, sortBy, deadEndsStatus }: StateType) => ({
   openedElements,
   sortBy,
+  deadEndsStatus,
 });
 
-const MDTP = { setSortType };
+const MDTP = { setSortType, setDeadEndsType };
 
 export default connect(MSTP, MDTP)(Header);

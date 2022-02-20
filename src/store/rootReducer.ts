@@ -1,5 +1,11 @@
 import { createReducer } from "typesafe-actions";
-import { ActionType, StateType, CompoundStatusType } from "./types";
+import {
+  ActionType,
+  StateType,
+  CompoundStatusType,
+  SortType,
+  DeadEndsType,
+} from "./types";
 import {
   startElements,
   allElements,
@@ -12,6 +18,7 @@ import {
   updateCompoundInfo,
   resetSelections,
   setSortType,
+  setDeadEndsType,
 } from "./actions";
 import { getAvailableRecipes } from "./selectors";
 
@@ -24,6 +31,7 @@ const initialState: Readonly<StateType> = {
   newResult: null,
   compoundStatus: "0",
   sortBy: "time",
+  deadEndsStatus: "hide",
 };
 
 const getSelectedRearrangeType = (
@@ -73,16 +81,34 @@ const computeResult = (state: StateType) => {
 };
 
 export default createReducer<StateType, ActionType>(initialState)
-  .handleAction(setSortType, (state, { payload }) => ({
-    ...state,
-    sortBy: payload,
-  }))
   .handleAction(resetSelections, (state) => ({
     ...state,
-    firstSelectedElement: null,
-    secondSelectedElement: null,
-    result: null,
+    compoundStatus: "-1",
   }))
+  .handleAction(setDeadEndsType, (state) => {
+    let { deadEndsStatus } = state;
+    const nextDeadEndsTypes: { [key in DeadEndsType]: DeadEndsType } = {
+      hide: "show",
+      show: "exclude",
+      exclude: "hide",
+    };
+    return {
+      ...state,
+      deadEndsStatus: nextDeadEndsTypes[deadEndsStatus],
+    };
+  })
+  .handleAction(setSortType, (state) => {
+    let { sortBy } = state;
+    const nexSortTypes: { [key in SortType]: SortType } = {
+      alphabet: "type",
+      type: "time",
+      time: "alphabet",
+    };
+    return {
+      ...state,
+      sortBy: nexSortTypes[sortBy],
+    };
+  })
   .handleAction(updateCards, (state) => {
     if (state.newOpenedElements) {
       return {
@@ -151,7 +177,9 @@ export default createReducer<StateType, ActionType>(initialState)
       secondSelectedElement,
       result,
       compoundStatus,
+      newResult,
     } = state;
+    if (compoundStatus === "-1") newResult = null;
     if (compoundStatus === "-") {
       result = null;
     } else if (["-2", "1=2 -2", "1"].includes(compoundStatus)) {
@@ -167,6 +195,7 @@ export default createReducer<StateType, ActionType>(initialState)
       firstSelectedElement,
       secondSelectedElement,
       result,
+      newResult,
       compoundStatus: "0",
     };
   });
