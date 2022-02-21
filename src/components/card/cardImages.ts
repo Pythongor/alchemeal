@@ -73,7 +73,7 @@ import candy from "assets/images/icons/candy.png";
 import cottonCandy from "assets/images/icons/cotton candy.png";
 import cremeBrulee from "assets/images/icons/creme brulee.png";
 import bun from "assets/images/icons/bun.png";
-import peanutButter from "assets/images/icons/peanut butter.png";
+import nutButter from "assets/images/icons/nut butter.png";
 import muesli from "assets/images/icons/muesli.png";
 import gozinaki from "assets/images/icons/gozinaki.png";
 import mead from "assets/images/icons/mead.png";
@@ -155,7 +155,7 @@ const images: { [key in ElementType]?: string } = {
   "cotton candy": cottonCandy,
   "creme brulee": cremeBrulee,
   bun,
-  "peanut butter": peanutButter,
+  "nut butter": nutButter,
   muesli,
   gozinaki,
   mead,

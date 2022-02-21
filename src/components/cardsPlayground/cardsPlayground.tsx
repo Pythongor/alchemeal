@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Card } from "..";
 import { allElements, recipesByElement, ElementType } from "recipes";
@@ -12,6 +12,7 @@ type CardsPlaygroundProps = StateProps & DispatchProps;
 type SortFuncsType = {
   [key in SortType]: (a: ElementType, b: ElementType) => number;
 };
+type FilterFuncType = () => (title: ElementType) => boolean;
 
 const sortFuncs: SortFuncsType = {
   time: () => 0,
@@ -37,25 +38,51 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   deadEndsStatus,
   newOpenedElements,
 }) => {
+  const [filterFunc, setFilterFunc] = useState<FilterFuncType>(
+    () => (title: ElementType) => true
+  );
+
+  const [isFirstRender, setFirstRender] = useState(true);
+
+  useEffect(() => {
+    if (deadEndsStatus !== "exclude") {
+      setFilterFunc(() => (title: ElementType) => true);
+    } else if (isFirstRender) {
+      setFilterFunc(
+        () => (title: ElementType) => !isDeadEnd(title, openedElements)
+      );
+      setFirstRender(false);
+    } else {
+      setTimeout(
+        () =>
+          setFilterFunc(
+            () => (title: ElementType) => !isDeadEnd(title, openedElements)
+          ),
+        350
+      );
+    }
+  }, [deadEndsStatus, openedElements, isFirstRender]);
+
   const sortFunc = sortFuncs[sortBy];
-  const filterFunc =
-    deadEndsStatus === "exclude"
-      ? (title: ElementType) => !isDeadEnd(title, openedElements)
-      : () => true;
   return (
     <div className={styles.container}>
       {[...openedElements]
-        .sort(sortFunc)
         .filter(filterFunc)
+        .sort(sortFunc)
         .map((title) => {
           const isNewResult = newResult
             ? typeof newResult === "string"
               ? newResult === title
               : newResult.includes(title)
             : false;
+
           const willUnmount = newOpenedElements
             ? !newOpenedElements?.includes(title)
             : false;
+
+          const isDead =
+            isDeadEnd(title, openedElements) && deadEndsStatus === "exclude";
+
           return (
             <Card
               title={title}
@@ -65,7 +92,7 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               isDeadEnd={
                 deadEndsStatus === "show" && isDeadEnd(title, openedElements)
               }
-              willUnmount={willUnmount}
+              willUnmount={willUnmount || isDead}
             />
           );
         })}

@@ -31,7 +31,7 @@ const Card: React.FC<CardProps> = ({
   willUnmount,
   isDeadEnd,
 }) => {
-  const [isFaded, setFaded] = useState<boolean>(true);
+  const [isFaded, setFaded] = useState<boolean>(!willUnmount);
   if (isFaded) {
     setTimeout(() => setFaded(false), 100);
   }
