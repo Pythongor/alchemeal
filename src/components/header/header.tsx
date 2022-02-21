@@ -2,7 +2,12 @@ import React from "react";
 import cn from "classnames";
 import { connect } from "react-redux";
 import { elementsList } from "recipes";
-import { setSortType, setDeadEndsType, resetSelections } from "store/actions";
+import {
+  setSortType,
+  setDeadEndsType,
+  resetProgress,
+  setModal,
+} from "store/actions";
 import { StateType, SortType } from "store/types";
 import styles from "./header.module.scss";
 
@@ -43,7 +48,9 @@ const Header: React.FC<HeaderProps> = ({
   deadEndsStatus,
   setSortType,
   setDeadEndsType,
-  resetSelections,
+  resetProgress,
+  newOpenedElements,
+  setModal,
 }) => {
   const sortText = sortsTextes[sortBy];
   return (
@@ -67,8 +74,16 @@ const Header: React.FC<HeaderProps> = ({
         <button
           className={styles.reset}
           onClick={() => {
-            animate();
-            resetSelections();
+            if (!newOpenedElements) {
+              setModal({
+                text: "Reset all your progress?",
+                isDialog: true,
+                acceptFunc: () => {
+                  animate();
+                  resetProgress();
+                },
+              });
+            }
           }}
         >
           <div className={styles.reset_icon}></div>
@@ -78,12 +93,18 @@ const Header: React.FC<HeaderProps> = ({
   );
 };
 
-const MSTP = ({ openedElements, sortBy, deadEndsStatus }: StateType) => ({
+const MSTP = ({
   openedElements,
   sortBy,
   deadEndsStatus,
+  newOpenedElements,
+}: StateType) => ({
+  openedElements,
+  sortBy,
+  deadEndsStatus,
+  newOpenedElements,
 });
 
-const MDTP = { setSortType, setDeadEndsType, resetSelections };
+const MDTP = { setSortType, setDeadEndsType, resetProgress, setModal };
 
 export default connect(MSTP, MDTP)(Header);

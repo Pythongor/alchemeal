@@ -1,5 +1,5 @@
 import { createAction } from "typesafe-actions";
-import { Actions } from "./types";
+import { Actions, ModalType } from "./types";
 import { ElementEntriesType } from "recipes";
 
 export const processSelectedCard = createAction(
@@ -21,3 +21,5 @@ export const updateOnLoad = createAction(Actions.updateOnLoad)<{
 }>();
 
 export const resetProgress = createAction(Actions.resetProgress)();
+
+export const setModal = createAction(Actions.setModal)<ModalType>();

@@ -8,6 +8,12 @@ export type SortType = "alphabet" | "type" | "time";
 
 export type DeadEndsType = "hide" | "show" | "exclude";
 
+export type ModalType = {
+  text: string;
+  acceptFunc?: () => void | null;
+  isDialog?: boolean;
+} | null;
+
 export type StateType = {
   openedElements: ElementType[];
   newOpenedElements: ElementType[] | null;
@@ -18,6 +24,7 @@ export type StateType = {
   compoundStatus: CompoundStatusType;
   sortBy: SortType;
   deadEndsStatus: DeadEndsType;
+  modal: ModalType;
 };
 
 export enum Actions {
@@ -29,6 +36,7 @@ export enum Actions {
   setDeadEndsType = "SET_DEAD_ENDS_TYPE",
   updateOnLoad = "UPDATE_ON_LOAD",
   resetProgress = "RESET_PROGRESS",
+  setModal = "SET_MODAL",
 }
 
 export type ActionType = ActType<typeof actions>;

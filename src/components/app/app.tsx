@@ -3,12 +3,15 @@ import { connect } from "react-redux";
 import {
   updateCards,
   updateCompoundInfo,
-  resetSelections,
   updateOnLoad,
+  resetSelections,
+  setModal,
+  resetProgress,
 } from "store/actions";
+import { elementsList } from "recipes";
 import { StateType } from "store/types";
 import styles from "./app.module.scss";
-import { CardsPlayground, Header, CompoundInfo } from "..";
+import { CardsPlayground, Header, CompoundInfo, Modal } from "..";
 
 type StateProps = ReturnType<typeof MSTP>;
 type DispatchProps = typeof MDTP;
@@ -17,10 +20,13 @@ type AppProps = StateProps & DispatchProps;
 const App: React.FC<AppProps> = ({
   newOpenedElements,
   compoundStatus,
+  openedElements,
   updateCards,
   updateCompoundInfo,
   resetSelections,
   updateOnLoad,
+  setModal,
+  resetProgress,
 }) => {
   useEffect(() => {
     if (newOpenedElements) {
@@ -29,8 +35,22 @@ const App: React.FC<AppProps> = ({
   }, [newOpenedElements, updateCards]);
 
   useEffect(() => {
+    if (openedElements.length === elementsList.length) {
+      setModal({
+        isDialog: true,
+        acceptFunc: () => {
+          resetProgress();
+        },
+        text:
+          "Congratulation! You are greatest Chef-Alchemist in the world!" +
+          " Do you want to play again?",
+      });
+    }
+  }, [openedElements, setModal, resetProgress]);
+
+  useEffect(() => {
     updateOnLoad(localStorage);
-  }, []);
+  }, [updateOnLoad]);
 
   useEffect(() => {
     setTimeout(() => updateCompoundInfo(), 350);
@@ -47,6 +67,7 @@ const App: React.FC<AppProps> = ({
         if (!isElementCard && element.tagName !== "BUTTON") resetSelections();
       }}
     >
+      <Modal />
       <Header />
       <div className={styles.container}>
         <CardsPlayground />
@@ -56,11 +77,23 @@ const App: React.FC<AppProps> = ({
   );
 };
 
-const MSTP = ({ newOpenedElements, compoundStatus }: StateType) => ({
+const MSTP = ({
   newOpenedElements,
   compoundStatus,
+  openedElements,
+}: StateType) => ({
+  newOpenedElements,
+  compoundStatus,
+  openedElements,
 });
 
-const MDTP = { updateCards, updateCompoundInfo, resetSelections, updateOnLoad };
+const MDTP = {
+  updateCards,
+  updateCompoundInfo,
+  resetSelections,
+  updateOnLoad,
+  setModal,
+  resetProgress,
+};
 
 export default connect(MSTP, MDTP)(App);

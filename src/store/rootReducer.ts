@@ -21,6 +21,7 @@ import {
   setDeadEndsType,
   updateOnLoad,
   resetProgress,
+  setModal,
 } from "./actions";
 import { getAvailableRecipes } from "./selectors";
 
@@ -34,6 +35,7 @@ const initialState: Readonly<StateType> = {
   compoundStatus: "0",
   sortBy: "time",
   deadEndsStatus: "hide",
+  modal: null,
 };
 
 const getSelectedRearrangeType = (
@@ -83,7 +85,19 @@ const computeResult = (state: StateType) => {
 };
 
 export default createReducer<StateType, ActionType>(initialState)
-  .handleAction(resetSelections, () => initialState)
+  .handleAction(resetProgress, (state) => ({
+    ...initialState,
+    openedElements: state.openedElements,
+    newOpenedElements: initialState.openedElements,
+  }))
+  .handleAction(resetSelections, (state) => ({
+    ...state,
+    compoundStatus: "-1",
+  }))
+  .handleAction(setModal, (state, { payload }) => ({
+    ...state,
+    modal: payload,
+  }))
   .handleAction(setDeadEndsType, (state) => {
     let { deadEndsStatus } = state;
     const nextDeadEndsTypes: { [key in DeadEndsType]: DeadEndsType } = {
@@ -117,10 +131,6 @@ export default createReducer<StateType, ActionType>(initialState)
       };
     } else return state;
   })
-  .handleAction(resetProgress, (state) => ({
-    ...state,
-    compoundStatus: "-1",
-  }))
   .handleAction(updateOnLoad, (state, { payload }) => {
     const { deadEndsStatus: des, openedElements: oe, sortBy: sb } = payload;
     let { deadEndsStatus, openedElements, sortBy } = state;
