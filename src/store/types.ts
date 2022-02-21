@@ -6,7 +6,7 @@ export type CompoundStatusType = "1=2 -2" | "-2" | "-1" | "0" | "1" | "!" | "-";
 
 export type SortType = "alphabet" | "type" | "time";
 
-export type DeadEndsType = "hide" | "show" | "exclude";
+export type DeadEndsType = "hide" | "show" | "ignore";
 
 export type ModalType = {
   text: string;

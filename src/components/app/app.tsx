@@ -42,7 +42,7 @@ const App: React.FC<AppProps> = ({
           resetProgress();
         },
         text:
-          "Congratulation! You are greatest Chef-Alchemist in the world!" +
+          "Congratulation! You are the greatest Chef-Alchemist in the world!" +
           " Do you want to play again?",
       });
     }

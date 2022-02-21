@@ -45,7 +45,7 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   const [isFirstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
-    if (deadEndsStatus !== "exclude") {
+    if (deadEndsStatus !== "hide") {
       setFilterFunc(() => (title: ElementType) => true);
     } else if (isFirstRender) {
       setFilterFunc(
@@ -64,6 +64,7 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   }, [deadEndsStatus, openedElements, isFirstRender]);
 
   const sortFunc = sortFuncs[sortBy];
+
   return (
     <div className={styles.container}>
       {[...openedElements]
@@ -81,7 +82,7 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
             : false;
 
           const isDead =
-            isDeadEnd(title, openedElements) && deadEndsStatus === "exclude";
+            isDeadEnd(title, openedElements) && deadEndsStatus === "hide";
 
           return (
             <Card
