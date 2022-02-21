@@ -85,11 +85,16 @@ const computeResult = (state: StateType) => {
 };
 
 export default createReducer<StateType, ActionType>(initialState)
-  .handleAction(resetProgress, (state) => ({
-    ...initialState,
-    openedElements: state.openedElements,
-    newOpenedElements: initialState.openedElements,
-  }))
+  .handleAction(resetProgress, (state) => {
+    const { openedElements, sortBy, deadEndsStatus } = state;
+    return {
+      ...initialState,
+      openedElements,
+      newOpenedElements: initialState.openedElements,
+      sortBy,
+      deadEndsStatus,
+    };
+  })
   .handleAction(resetSelections, (state) => ({
     ...state,
     compoundStatus: "-1",
@@ -176,8 +181,6 @@ export default createReducer<StateType, ActionType>(initialState)
     compoundStatus = getSelectedRearrangeType(state, payload);
     if (compoundStatus === "0") {
       return state;
-    } else if (compoundStatus === "1=2 -2") {
-      firstSelectedElement = secondSelectedElement;
     } else if (compoundStatus === "!") {
       secondSelectedElement = payload;
       const resulted = computeResult({ ...state, secondSelectedElement });
@@ -225,7 +228,10 @@ export default createReducer<StateType, ActionType>(initialState)
       newResult,
     } = state;
     if (compoundStatus === "-1") newResult = null;
-    if (compoundStatus === "-") {
+    if (compoundStatus === "-") result = null;
+    if (compoundStatus === "1=2 -2") {
+      firstSelectedElement = secondSelectedElement;
+      secondSelectedElement = null;
       result = null;
     } else if (["-2", "1=2 -2", "1"].includes(compoundStatus)) {
       secondSelectedElement = null;

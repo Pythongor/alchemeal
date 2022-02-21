@@ -14,7 +14,7 @@ type SortFuncsType = {
 };
 
 const sortFuncs: SortFuncsType = {
-  time: () => -1,
+  time: () => 0,
   alphabet: (a, b) => a[0].localeCompare(b[0]),
   type: (a, b) =>
     allElements[a].localeCompare(allElements[b]) || a[0].localeCompare(b[0]),
@@ -35,6 +35,7 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   newResult,
   sortBy,
   deadEndsStatus,
+  newOpenedElements,
 }) => {
   const sortFunc = sortFuncs[sortBy];
   const filterFunc =
@@ -52,6 +53,9 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               ? newResult === title
               : newResult.includes(title)
             : false;
+          const willUnmount = newOpenedElements
+            ? !newOpenedElements?.includes(title)
+            : false;
           return (
             <Card
               title={title}
@@ -61,6 +65,7 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
               isDeadEnd={
                 deadEndsStatus === "show" && isDeadEnd(title, openedElements)
               }
+              willUnmount={willUnmount}
             />
           );
         })}
@@ -73,11 +78,13 @@ const MSTP = ({
   newResult,
   sortBy,
   deadEndsStatus,
+  newOpenedElements,
 }: StateType) => ({
   openedElements,
   newResult,
   sortBy,
   deadEndsStatus,
+  newOpenedElements,
 });
 
 const MDTP = {};
