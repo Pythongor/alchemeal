@@ -29,8 +29,16 @@
 }
 
 .reset {
-  &.button {
-    width: initial;
+  padding: 0 5px;
+  border-radius: 10px;
+  background-color: $meatBackground;
+  border: 5px solid $meatText;
+  font-family: "Rowdies";
+  font-size: 20px;
+  color: $cyan;
+  &:active {
+    background-color: $animalText;
+    border-color: $animalBackground;
   }
   &_icon {
     height: 40px;
@@ -38,8 +46,8 @@
     background-image: url("../../assets/images/UIicons/reset.png");
     background-position: 100%;
     background-size: cover;
-    filter: invert(35%) sepia(30%) saturate(449%) hue-rotate(119deg)
-      brightness(91%) contrast(88%);
+    filter: invert(14%) sepia(9%) saturate(3640%) hue-rotate(314deg)
+      brightness(98%) contrast(97%);
   }
   &:hover &_icon {
     filter: invert(57%) sepia(10%) saturate(4683%) hue-rotate(25deg)

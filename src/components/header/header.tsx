@@ -18,6 +18,25 @@ const sortsTextes: {
   time: "opening order",
 };
 
+const animate = () => {
+  const icon: HTMLDivElement | null = document.querySelector(
+    `.${styles.reset_icon}`
+  );
+  if (icon) {
+    const frame = () => {
+      if (deg < 360) {
+        deg += 4;
+        icon.style.transform = `rotate(${deg}deg)`;
+      } else {
+        icon.style.transform = "none";
+        clearInterval(id);
+      }
+    };
+    let id = setInterval(frame, 1);
+    let deg = 0;
+  }
+};
+
 const Header: React.FC<HeaderProps> = ({
   openedElements,
   sortBy,
@@ -46,8 +65,11 @@ const Header: React.FC<HeaderProps> = ({
           {openedElements.length}/{elementsList.length}
         </div>
         <button
-          className={cn(styles.reset, styles.button)}
-          onClick={() => resetSelections()}
+          className={styles.reset}
+          onClick={() => {
+            animate();
+            resetSelections();
+          }}
         >
           <div className={styles.reset_icon}></div>
         </button>
