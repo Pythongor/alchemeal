@@ -25,18 +25,23 @@
 .right-content {
   display: flex;
   justify-content: space-between;
-  width: 570px;
+  width: 600px;
 }
 
-.tips {
-  height: 40px;
-  width: 40px;
-  background-image: url("../../assets/images/UIicons/idea.png");
-  background-position: 100%;
-  background-size: cover;
-  filter: invert(13%) sepia(19%) saturate(2492%) hue-rotate(140deg)
-    brightness(99%) contrast(102%);
-  &:hover {
+.reset {
+  &.button {
+    width: initial;
+  }
+  &_icon {
+    height: 40px;
+    width: 40px;
+    background-image: url("../../assets/images/UIicons/reset.png");
+    background-position: 100%;
+    background-size: cover;
+    filter: invert(35%) sepia(30%) saturate(449%) hue-rotate(119deg)
+      brightness(91%) contrast(88%);
+  }
+  &:hover &_icon {
     filter: invert(57%) sepia(10%) saturate(4683%) hue-rotate(25deg)
       brightness(96%) contrast(88%);
   }
@@ -63,7 +68,7 @@
 .scores {
   font-family: "Rowdies";
   font-size: 26px;
-  line-height: 40px;
+  line-height: 50px;
   color: $green;
   &__completed {
     color: $animalBackground;

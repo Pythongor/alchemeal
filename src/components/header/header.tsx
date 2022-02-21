@@ -2,7 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { connect } from "react-redux";
 import { elementsList } from "recipes";
-import { setSortType, setDeadEndsType } from "store/actions";
+import { setSortType, setDeadEndsType, resetSelections } from "store/actions";
 import { StateType, SortType } from "store/types";
 import styles from "./header.module.scss";
 
@@ -24,6 +24,7 @@ const Header: React.FC<HeaderProps> = ({
   deadEndsStatus,
   setSortType,
   setDeadEndsType,
+  resetSelections,
 }) => {
   const sortText = sortsTextes[sortBy];
   return (
@@ -44,7 +45,12 @@ const Header: React.FC<HeaderProps> = ({
         >
           {openedElements.length}/{elementsList.length}
         </div>
-        <div className={styles.tips}></div>
+        <button
+          className={cn(styles.reset, styles.button)}
+          onClick={() => resetSelections()}
+        >
+          <div className={styles.reset_icon}></div>
+        </button>
       </div>
     </div>
   );
@@ -56,6 +62,6 @@ const MSTP = ({ openedElements, sortBy, deadEndsStatus }: StateType) => ({
   deadEndsStatus,
 });
 
-const MDTP = { setSortType, setDeadEndsType };
+const MDTP = { setSortType, setDeadEndsType, resetSelections };
 
 export default connect(MSTP, MDTP)(Header);

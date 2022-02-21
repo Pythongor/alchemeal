@@ -27,6 +27,8 @@ export enum Actions {
   resetSelections = "RESET_SELECTIONS",
   setSortType = "SET_SORT_TYPE",
   setDeadEndsType = "SET_DEAD_ENDS_TYPE",
+  updateOnLoad = "UPDATE_ON_LOAD",
+  resetProgress = "RESET_PROGRESS",
 }
 
 export type ActionType = ActType<typeof actions>;

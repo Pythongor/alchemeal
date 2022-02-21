@@ -15,3 +15,9 @@ export const resetSelections = createAction(Actions.resetSelections)();
 export const setSortType = createAction(Actions.setSortType)();
 
 export const setDeadEndsType = createAction(Actions.setDeadEndsType)();
+
+export const updateOnLoad = createAction(Actions.updateOnLoad)<{
+  [key: string]: string;
+}>();
+
+export const resetProgress = createAction(Actions.resetProgress)();

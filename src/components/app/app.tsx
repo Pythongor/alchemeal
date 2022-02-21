@@ -4,6 +4,7 @@ import {
   updateCards,
   updateCompoundInfo,
   resetSelections,
+  updateOnLoad,
 } from "store/actions";
 import { StateType } from "store/types";
 import styles from "./app.module.scss";
@@ -19,12 +20,17 @@ const App: React.FC<AppProps> = ({
   updateCards,
   updateCompoundInfo,
   resetSelections,
+  updateOnLoad,
 }) => {
   useEffect(() => {
     if (newOpenedElements) {
       setTimeout(() => updateCards(), 350);
     }
   }, [newOpenedElements, updateCards]);
+
+  useEffect(() => {
+    updateOnLoad(localStorage);
+  }, []);
 
   useEffect(() => {
     setTimeout(() => updateCompoundInfo(), 350);
@@ -55,6 +61,6 @@ const MSTP = ({ newOpenedElements, compoundStatus }: StateType) => ({
   compoundStatus,
 });
 
-const MDTP = { updateCards, updateCompoundInfo, resetSelections };
+const MDTP = { updateCards, updateCompoundInfo, resetSelections, updateOnLoad };
 
 export default connect(MSTP, MDTP)(App);

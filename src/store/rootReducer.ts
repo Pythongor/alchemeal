@@ -19,6 +19,8 @@ import {
   resetSelections,
   setSortType,
   setDeadEndsType,
+  updateOnLoad,
+  resetProgress,
 } from "./actions";
 import { getAvailableRecipes } from "./selectors";
 
@@ -81,10 +83,7 @@ const computeResult = (state: StateType) => {
 };
 
 export default createReducer<StateType, ActionType>(initialState)
-  .handleAction(resetSelections, (state) => ({
-    ...state,
-    compoundStatus: "-1",
-  }))
+  .handleAction(resetSelections, () => initialState)
   .handleAction(setDeadEndsType, (state) => {
     let { deadEndsStatus } = state;
     const nextDeadEndsTypes: { [key in DeadEndsType]: DeadEndsType } = {
@@ -117,6 +116,42 @@ export default createReducer<StateType, ActionType>(initialState)
         newOpenedElements: null,
       };
     } else return state;
+  })
+  .handleAction(resetProgress, (state) => ({
+    ...state,
+    compoundStatus: "-1",
+  }))
+  .handleAction(updateOnLoad, (state, { payload }) => {
+    const { deadEndsStatus: des, openedElements: oe, sortBy: sb } = payload;
+    let { deadEndsStatus, openedElements, sortBy } = state;
+    const parsedOpenedElements = JSON.parse(oe);
+    const parsedDeadEndsStatus = JSON.parse(des);
+    const parsedSortBy = JSON.parse(sb);
+    console.log(des, oe, sb);
+    if (
+      parsedDeadEndsStatus === "hide" ||
+      parsedDeadEndsStatus === "show" ||
+      parsedDeadEndsStatus === "exclude"
+    ) {
+      deadEndsStatus = parsedDeadEndsStatus;
+    }
+    if (
+      parsedSortBy === "alphabet" ||
+      parsedSortBy === "type" ||
+      parsedSortBy === "time"
+    ) {
+      sortBy = parsedSortBy;
+    }
+    openedElements = [];
+    parsedOpenedElements.forEach((el: ElementType) => {
+      openedElements.push(el);
+    });
+    return {
+      ...state,
+      deadEndsStatus,
+      sortBy,
+      openedElements,
+    };
   })
   .handleAction(processSelectedCard, (state, { payload }) => {
     let {
