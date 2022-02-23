@@ -61,8 +61,10 @@ const App: React.FC<AppProps> = ({
       className={styles.app}
       onClick={(ev) => {
         const element = ev.target as HTMLElement;
-        const isElementCard = [...element.classList].some((className) =>
-          className.includes("card_card_")
+        const isElementCard = [...element.classList].some(
+          (className) =>
+            className.includes("card_card_") ||
+            className.includes("compoundInfo_multiple-result")
         );
         if (!isElementCard && element.tagName !== "BUTTON") resetSelections();
       }}

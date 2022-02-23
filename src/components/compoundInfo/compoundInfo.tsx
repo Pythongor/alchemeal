@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Card } from "..";
-import { ElementEntriesType } from "recipes";
+import { ElementEntriesType, FoodType } from "recipes";
+import MultipleResultCard from "./multipleResultCard";
 import { StateType } from "store/types";
 import styles from "./compoundInfo.module.scss";
 
@@ -19,7 +20,7 @@ const CompoundInfo: React.FC<CompoundInfoProps> = ({
   const resultInfo = result
     ? typeof result[0] === "string"
       ? (result as ElementEntriesType)
-      : result[0]
+      : (result as ElementEntriesType[])
     : null;
   const firstWillUnmount = ["-1", "1=2 -2"].includes(compoundStatus);
   const secondWillUnmount = ["-1", "-2", "1=2 -2", "1", "-", "!"].includes(
@@ -50,14 +51,27 @@ const CompoundInfo: React.FC<CompoundInfoProps> = ({
       </div>
       <div className={styles.sign}>=</div>
       <div className={styles["card-holder"]}>
-        {resultInfo && (
+        {resultInfo && typeof resultInfo[0] === "string" ? (
           <Card
-            isDecorative={true}
             title={resultInfo[0]}
-            type={resultInfo[1]}
+            type={resultInfo[1] as FoodType}
             willUnmount={secondWillUnmount}
             isNewResult={!!newResult}
           />
+        ) : (
+          resultInfo && (
+            <div className={styles["multiple-result"]}>
+              {(result as ElementEntriesType[]).map(([title, type]) => (
+                <MultipleResultCard
+                  title={title}
+                  type={type}
+                  willUnmount={secondWillUnmount}
+                  key={title}
+                  isNewResult={!!newResult}
+                />
+              ))}
+            </div>
+          )
         )}
       </div>
     </div>

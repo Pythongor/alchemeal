@@ -162,6 +162,10 @@
     &:hover {
       transform: none;
       transition: filter 0.2s;
+      box-shadow: 2px 5px 5px 3px;
+    }
+    &.card__selected {
+      box-shadow: 0px 0px 29px 5px rgba($pink, 0.8), 0px 5px 5px 3px;
     }
   }
   &_title {
