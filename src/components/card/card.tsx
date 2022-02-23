@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { StateType } from "store/types";
 import { processSelectedCard } from "store/actions";
 import { ElementType, FoodType } from "recipes";
-import images from "./cardImages";
+import * as images from "./cardImages";
 import styles from "./card.module.scss";
 
 type OwnProps = {
@@ -19,6 +19,8 @@ type OwnProps = {
 type StateProps = ReturnType<typeof MSTP>;
 type DispatchProps = typeof MDTP;
 type CardProps = StateProps & DispatchProps & OwnProps;
+
+const imgs = images as { [key: string]: string };
 
 const Card: React.FC<CardProps> = ({
   title,
@@ -55,7 +57,11 @@ const Card: React.FC<CardProps> = ({
     >
       <div className={styles.card_title}>{title}</div>
       <div className={styles["card_image-wrapper"]}>
-        <img className={styles.card_image} src={images[title]} alt=""></img>
+        <img
+          className={styles.card_image}
+          src={imgs[title.replace(" ", "")]}
+          alt=""
+        ></img>
       </div>
     </div>
   );

@@ -15,8 +15,6 @@ export type ElementType = typeof elementsList[number];
 
 export type ElementEntriesType = [ElementType, FoodType];
 
-type ElementsType = { [key in ElementType]: FoodType };
-
 type RecipesType = [[ElementType, ElementType], ElementType | ElementType[]][];
 
 export type RecipesByElementType = {
@@ -24,6 +22,8 @@ export type RecipesByElementType = {
     [key in ElementType]?: ElementType | ElementType[];
   };
 };
+
+const getKeys = Object.keys as <T extends object>(obj: T) => Array<keyof T>;
 
 export const startElements: ElementType[] = [
   "animal",
@@ -33,90 +33,29 @@ export const startElements: ElementType[] = [
   "tool",
 ];
 
-export const elementsList = [
-  "animal",
-  "earth",
-  "furnace",
-  "ice",
-  "tool",
-  "bacteria",
-  "egg",
-  "meat",
-  "milk",
-  "arable",
-  "water",
-  "boiling water",
-  "omelette",
-  "kebab",
-  "burned something",
-  "forcemeat",
-  "kefir",
-  "cream",
-  "cheese",
-  "blue cheese",
-  "boiled egg",
-  "roast",
-  "condensed milk",
-  "milkshake",
-  "fish",
-  "seed",
-  "grass",
-  "reed",
-  "sugar",
-  "sausage",
-  "fish soup",
-  "tea",
-  "cutlet",
-  "koumiss",
-  "fondue",
-  "ice cream",
-  "fried fish",
-  "surströmming",
-  "popcorn",
-  "cereal",
-  "manure",
-  "mojito",
-  "spices",
-  "bush",
-  "flower",
-  "caramel",
-  "cotton candy",
-  "eggnog",
-  "syrup",
-  "butter dough",
-  "ice tea",
-  "flour",
-  "kvass",
-  "porridge",
-  "sushi",
-  "berry",
-  "sauce",
-  "tree",
-  "nut",
-  "honey",
-  "candy",
-  "creme brulee",
-  "bun",
-  "cookie",
-  "dough",
-  "beer",
-  "pilaf",
-  "juice",
-  "wine",
-  "jam",
-  "yogurt",
-  "mayonnaise",
-  "cocoa bean",
-  "coffee bean",
-  "fruit",
-  "nut butter",
-  "muesli",
-  "gozinaki",
-  "mead",
-  "gingerbread",
-] as const;
-
-export const allElements: ElementsType = {
+export const allElements = {
+  "burned something": "inedible", //--------
+  reed: "plant", //-------------------------
+  "fish soup": "animal", //-----------------
+  koumiss: "milk", //-----------------------
+  surströmming: "animal", //----------------
+  bush: "plant", //-------------------------
+  "cotton candy": "sweet", //---------------
+  eggnog: "sweet", //-----------------------
+  "ice tea": "drink", //--------------------
+  kvass: "drink", //------------------------
+  sushi: "animal", //-----------------------
+  baklava: "sweet", //----------------------
+  pilaf: "meat", //-------------------------
+  muesli: "vegan", //-----------------------
+  gozinaki: "sweet", //---------------------
+  mead: "drink", //-------------------------
+  gingerbread: "bakery", //-----------------
+  manure: "inedible", //--------------------
+  tree: "plant", //-------------------------
+  fondue: "milk", //------------------------
+  "creme brulee": "sweet", //---------------
+  croissant: "bakery", //-------------------
   animal: "animal",
   earth: "inedible",
   furnace: "inedible",
@@ -126,12 +65,10 @@ export const allElements: ElementsType = {
   egg: "animal",
   meat: "meat",
   milk: "milk",
-  arable: "inedible",
   water: "drink",
   "boiling water": "drink",
   omelette: "animal",
   kebab: "meat",
-  "burned something": "inedible",
   forcemeat: "meat",
   kefir: "milk",
   cream: "milk",
@@ -143,61 +80,50 @@ export const allElements: ElementsType = {
   milkshake: "drink",
   fish: "animal",
   seed: "plant",
-  reed: "plant",
   grass: "plant",
   sugar: "other",
   sausage: "meat",
-  "fish soup": "animal",
   tea: "drink",
   cutlet: "meat",
-  koumiss: "milk",
-  fondue: "milk",
+  toffee: "sweet",
   "ice cream": "sweet",
   "fried fish": "animal",
-  surströmming: "animal",
   popcorn: "fastfood",
   cereal: "plant",
-  manure: "inedible",
   mojito: "drink",
   spices: "other",
-  bush: "plant",
   flower: "plant",
   caramel: "sweet",
-  "cotton candy": "sweet",
-  eggnog: "sweet",
   syrup: "sweet",
   "butter dough": "bakery",
-  "ice tea": "drink",
   flour: "other",
-  kvass: "drink",
   porridge: "vegan",
-  sushi: "animal",
   berry: "vegan",
   sauce: "other",
-  tree: "plant",
   nut: "vegan",
   honey: "animal",
   candy: "sweet",
-  "creme brulee": "sweet",
-  bun: "bakery",
   cookie: "bakery",
-  dough: "bakery",
+  pie: "bakery",
+  cake: "bakery",
+  dough: "bakery" /* ***** */,
   beer: "drink",
-  pilaf: "meat",
   juice: "drink",
   wine: "drink",
   jam: "sweet",
   yogurt: "milk",
+  marshmallow: "sweet",
   mayonnaise: "other",
   "cocoa bean": "plant",
   "coffee bean": "plant",
   fruit: "vegan",
   "nut butter": "other",
-  muesli: "vegan",
-  gozinaki: "sweet",
-  mead: "drink",
-  gingerbread: "bakery",
-};
+  mustard: "other",
+  topping: "other",
+  bread: "bakery",
+} as const;
+
+export const elementsList = getKeys(allElements);
 
 // todo burned something for all
 const recipes: RecipesType = [
@@ -206,7 +132,6 @@ const recipes: RecipesType = [
     ["animal", "tool"],
     ["egg", "meat", "milk"],
   ],
-  [["earth", "tool"], "arable"],
   [["furnace", "ice"], "water"],
   [["furnace", "water"], "boiling water"],
   [["egg", "furnace"], "omelette"],
@@ -217,7 +142,6 @@ const recipes: RecipesType = [
   [["furnace", "boiled egg"], "burned something"],
   [["furnace", "blue cheese"], "burned something"],
   [["furnace", "roast"], "burned something"],
-  [["furnace", "condensed milk"], "burned something"],
   [["tool", "meat"], "forcemeat"],
   [["bacteria", "milk"], "kefir"],
   [["bacteria", "kefir"], "cream"],
@@ -237,6 +161,7 @@ const recipes: RecipesType = [
   [["forcemeat", "furnace"], "cutlet"],
   [["kefir", "tool"], "koumiss"],
   [["cheese", "furnace"], "fondue"],
+  [["furnace", "condensed milk"], "toffee"],
   [["ice", "milkshake"], "ice cream"],
   [["fish", "furnace"], "fried fish"],
   [["bacteria", "fish"], "surströmming"],
@@ -267,8 +192,11 @@ const recipes: RecipesType = [
   [["caramel", "condensed milk"], "creme brulee"],
   [
     ["butter dough", "furnace"],
-    ["bun", "cookie"],
+    ["croissant", "cookie"],
   ],
+  [["butter dough", "honey"], "baklava"],
+  [["butter dough", "berry"], "cake"],
+  [["butter dough", "fruit"], "pie"],
   [["furnace", "ice tea"], "tea"],
   [["egg", "flour"], "dough"],
   [["bacteria", "kvass"], "beer"],
@@ -277,6 +205,7 @@ const recipes: RecipesType = [
   [["bacteria", "berry"], "wine"],
   [["berry", "boiling water"], "jam"],
   [["berry", "kefir"], "yogurt"],
+  [["berry", "egg"], "marshmallow"],
   [["egg", "sauce"], "mayonnaise"],
   [
     ["seed", "tree"],
@@ -288,6 +217,9 @@ const recipes: RecipesType = [
   [["honey", "nut"], "gozinaki"],
   [["bacteria", "honey"], "mead"],
   [["cookie", "honey"], "gingerbread"],
+  [["sauce", "seed"], "mustard"],
+  [["sauce", "sugar"], "topping"],
+  [["dough", "furnace"], "bread"],
 ];
 
 export const recipesByElement: RecipesByElementType = {};
