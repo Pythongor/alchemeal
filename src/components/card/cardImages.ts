@@ -84,3 +84,7 @@ export { default as cake } from "assets/images/icons/cake.png";
 export { default as marshmallow } from "assets/images/icons/marshmallow.png";
 export { default as mustard } from "assets/images/icons/mustard.png";
 export { default as topping } from "assets/images/icons/topping.png";
+export { default as bread } from "assets/images/icons/bread.png";
+export { default as toast } from "assets/images/icons/toast.png";
+export { default as pita } from "assets/images/icons/pita.png";
+export { default as baozi } from "assets/images/icons/baozi.png";

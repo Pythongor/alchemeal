@@ -68,7 +68,7 @@ export const allElements = {
   water: "drink",
   "boiling water": "drink",
   omelette: "animal",
-  kebab: "meat",
+  kebab: "fastfood",
   forcemeat: "meat",
   kefir: "milk",
   cream: "milk",
@@ -121,6 +121,8 @@ export const allElements = {
   mustard: "other",
   topping: "other",
   bread: "bakery",
+  pita: "bakery",
+  baozi: "bakery",
 } as const;
 
 export const elementsList = getKeys(allElements);
@@ -220,6 +222,8 @@ const recipes: RecipesType = [
   [["sauce", "seed"], "mustard"],
   [["sauce", "sugar"], "topping"],
   [["dough", "furnace"], "bread"],
+  [["dough", "tool"], "pita"],
+  [["dough", "forcemeat"], "baozi"],
 ];
 
 export const recipesByElement: RecipesByElementType = {};
