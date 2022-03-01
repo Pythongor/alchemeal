@@ -14,6 +14,7 @@ const Modal: React.FC<ModalProps> = ({ modal, setModal }) => {
     <div className={cn(styles.wrapper, { [styles.wrapper__closed]: !modal })}>
       <div className={styles.container}>
         <div className={styles.title}>{modal?.text}</div>
+        {modal?.body && <modal.body />}
         <div className={styles.buttons}>
           <button
             onClick={() => {

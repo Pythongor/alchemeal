@@ -1,6 +1,7 @@
 import { ActionType as ActType } from "typesafe-actions";
 import { ElementType, ElementEntriesType } from "recipes";
 import * as actions from "./actions";
+import React from "react";
 
 export type CompoundStatusType = "1=2 -2" | "-2" | "-1" | "0" | "1" | "!" | "-";
 
@@ -12,6 +13,7 @@ export type ModalType = {
   text: string;
   acceptFunc?: () => void | null;
   isDialog?: boolean;
+  body?: React.ElementType;
 } | null;
 
 export type StateType = {

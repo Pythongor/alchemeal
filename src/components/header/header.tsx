@@ -8,6 +8,7 @@ import {
   resetProgress,
   setModal,
 } from "store/actions";
+import { Congrats } from "./credits";
 import { StateType, SortType } from "store/types";
 import styles from "./header.module.scss";
 
@@ -55,7 +56,17 @@ const Header: React.FC<HeaderProps> = ({
   const sortText = sortsTextes[sortBy];
   return (
     <div className={styles.container}>
-      <div className={styles.logo}>AlcheMeal</div>
+      <div
+        className={styles.logo}
+        onClick={() => {
+          setModal({
+            text: "Credits",
+            body: Congrats,
+          });
+        }}
+      >
+        AlcheMeal
+      </div>
       <div className={styles["right-content"]}>
         <button onClick={() => setDeadEndsType()} className={styles.button}>
           {deadEndsStatus[0].toUpperCase() + deadEndsStatus.slice(1)} dead ends
