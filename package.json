@@ -1,6 +1,7 @@
 {
   "name": "alchemeal",
   "version": "0.1.0",
+  "homepage": "https://dmytro-alar.github.io/alchemeal",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
@@ -16,11 +17,13 @@
     "react-redux": "^7.2.6",
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",
-    "typescript": "^4.5.5",
     "typesafe-actions": "^5.1.0",
+    "typescript": "^4.5.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -45,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.2.3",
     "node-sass": "^7.0.1",
     "sass-loader": "^12.4.0",
     "style-loader": "^3.3.1"
