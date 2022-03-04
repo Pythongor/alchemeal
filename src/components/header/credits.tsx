@@ -130,6 +130,42 @@ const links: { href: string; text: string }[] = [
     href: "https://www.flaticon.com/authors/yogi-aprelliyanto",
     text: "Yogi Aprelliyanto",
   },
+  {
+    href: "https://www.flaticon.com/authors/rasama-studio",
+    text: "Rasama Studio",
+  },
+  {
+    href: "https://www.flaticon.com/authors/rang",
+    text: "rang",
+  },
+  {
+    href: "https://www.flaticon.com/authors/vectors-market",
+    text: "Vectors Market",
+  },
+  {
+    href: "https://www.flaticon.com/authors/vector-stall",
+    text: "Vector Stall",
+  },
+  {
+    href: "https://www.flaticon.com/authors/romstu",
+    text: "RomStu",
+  },
+  {
+    href: "https://www.flaticon.com/authors/kemalmoe",
+    text: "Kemalmoe",
+  },
+  {
+    href: "https://www.flaticon.com/authors/afitrose",
+    text: "afitrose",
+  },
+  {
+    href: "https://www.flaticon.com/authors/vector-clans",
+    text: "Vector Clans",
+  },
+  {
+    href: "https://www.flaticon.com/authors/smalllikeart",
+    text: "smalllikeart",
+  },
 ];
 
 export const Congrats = () => {

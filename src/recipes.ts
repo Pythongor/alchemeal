@@ -56,6 +56,23 @@ export const allElements = {
   fondue: "milk", //------------------------
   "creme brulee": "sweet", //---------------
   croissant: "bakery", //-------------------
+  "hot-dog": "fastfood", //-----------------
+  hamburger: "fastfood", //-----------------
+  popcorn: "fastfood", //-------------------
+  communion: "other", //--------------------
+  beer: "drink", //-------------------------
+  vodka: "drink", //------------------------
+  brandy: "drink", //-----------------------
+  liqueur: "drink", //----------------------
+  cider: "drink", //------------------------
+  soda: "drink", //-------------------------
+  cola: "drink", //-------------------------
+  "mulled wine": "drink", //----------------
+  "ground coffee": "other", //--------------
+  "cocoa powder": "other", //---------------
+  "cocoa bean": "plant", //-----------------
+  "coffee bean": "plant", //----------------
+  shawerma: "fastfood", //------------------
   animal: "animal",
   earth: "inedible",
   furnace: "inedible",
@@ -88,7 +105,6 @@ export const allElements = {
   toffee: "sweet",
   "ice cream": "sweet",
   "fried fish": "animal",
-  popcorn: "fastfood",
   cereal: "plant",
   mojito: "drink",
   spices: "other",
@@ -106,16 +122,13 @@ export const allElements = {
   cookie: "bakery",
   pie: "bakery",
   cake: "bakery",
-  dough: "bakery" /* ***** */,
-  beer: "drink",
+  dough: "bakery",
   juice: "drink",
   wine: "drink",
   jam: "sweet",
   yogurt: "milk",
   marshmallow: "sweet",
   mayonnaise: "other",
-  "cocoa bean": "plant",
-  "coffee bean": "plant",
   fruit: "vegan",
   "nut butter": "other",
   mustard: "other",
@@ -123,6 +136,24 @@ export const allElements = {
   bread: "bakery",
   pita: "bakery",
   baozi: "bakery",
+  spaghetti: "bakery",
+  noodles: "bakery",
+  alcohol: "drink",
+  cocoa: "drink",
+  chocolate: "sweet",
+  coffee: "drink",
+  latte: "drink",
+  vegetable: "vegan",
+  toast: "bakery",
+  sandwich: "fastfood",
+  "hot chocolate": "drink",
+  eskimo: "sweet",
+  "chocolate bar": "sweet",
+  muffin: "bakery",
+  "french fries": "fastfood",
+  salad: "vegan",
+  soup: "vegan",
+  ketchup: "other",
 } as const;
 
 export const elementsList = getKeys(allElements);
@@ -138,12 +169,12 @@ const recipes: RecipesType = [
   [["furnace", "water"], "boiling water"],
   [["egg", "furnace"], "omelette"],
   [["furnace", "meat"], "kebab"],
-  [["furnace", "omelette"], "burned something"],
-  [["furnace", "kebab"], "burned something"],
-  [["furnace", "cream"], "burned something"],
-  [["furnace", "boiled egg"], "burned something"],
-  [["furnace", "blue cheese"], "burned something"],
-  [["furnace", "roast"], "burned something"],
+  // [["furnace", "omelette"], "burned something"],
+  // [["furnace", "kebab"], "burned something"],
+  // [["furnace", "cream"], "burned something"],
+  // [["furnace", "boiled egg"], "burned something"],
+  // [["furnace", "blue cheese"], "burned something"],
+  // [["furnace", "roast"], "burned something"],
   [["tool", "meat"], "forcemeat"],
   [["bacteria", "milk"], "kefir"],
   [["bacteria", "kefir"], "cream"],
@@ -182,7 +213,10 @@ const recipes: RecipesType = [
   [["dough", "sugar"], "butter dough"],
   [["ice", "tea"], "ice tea"],
   [["cereal", "tool"], "flour"],
-  [["bacteria", "cereal"], "kvass"],
+  [
+    ["bacteria", "cereal"],
+    ["kvass", "alcohol"],
+  ],
   [["boiling water", "cereal"], "porridge"],
   [["cereal", "fish"], "sushi"],
   [["bush", "manure"], "berry"],
@@ -198,16 +232,21 @@ const recipes: RecipesType = [
   ],
   [["butter dough", "honey"], "baklava"],
   [["butter dough", "berry"], "cake"],
+  [["butter dough", "fruit"], "cake"],
   [["butter dough", "fruit"], "pie"],
   [["furnace", "ice tea"], "tea"],
   [["egg", "flour"], "dough"],
-  [["bacteria", "kvass"], "beer"],
+  [["alcohol", "kvass"], "beer"],
   [["meat", "porridge"], "pilaf"],
   [["berry", "tool"], "juice"],
-  [["bacteria", "berry"], "wine"],
+  [["fruit", "tool"], "juice"],
+  [["alcohol", "berry"], "wine"],
   [["berry", "boiling water"], "jam"],
+  [["fruit", "boiling water"], "jam"],
   [["berry", "kefir"], "yogurt"],
+  [["fruit", "kefir"], "yogurt"],
   [["berry", "egg"], "marshmallow"],
+  [["fruit", "egg"], "marshmallow"],
   [["egg", "sauce"], "mayonnaise"],
   [
     ["seed", "tree"],
@@ -217,13 +256,59 @@ const recipes: RecipesType = [
   [["nut", "tool"], "nut butter"],
   [["nut", "porridge"], "muesli"],
   [["honey", "nut"], "gozinaki"],
-  [["bacteria", "honey"], "mead"],
+  [["alcohol", "honey"], "mead"],
   [["cookie", "honey"], "gingerbread"],
   [["sauce", "seed"], "mustard"],
   [["sauce", "sugar"], "topping"],
   [["dough", "furnace"], "bread"],
   [["dough", "tool"], "pita"],
   [["dough", "forcemeat"], "baozi"],
+  [["dough", "boiling water"], "spaghetti"],
+  [["dough", "sausage"], "hot-dog"],
+  [["dough", "cutlet"], "hamburger"],
+  [["bread", "wine"], "communion"],
+  [["spaghetti", "boiling water"], "noodles"],
+  [["alcohol", "water"], "vodka"],
+  [["alcohol", "wine"], "brandy"],
+  [["alcohol", "syrup"], "liqueur"],
+  [["alcohol", "fruit"], "cider"],
+  [["bacteria", "water"], "soda"],
+  [["soda", "syrup"], "cola"],
+  [["furnace", "wine"], "mulled wine"],
+  [["boiling water", "wine"], "mulled wine"],
+  [["coffee bean", "tool"], "ground coffee"],
+  [["cocoa bean", "tool"], "cocoa powder"],
+  [["cocoa powder", "furnace"], "chocolate"],
+  [["cocoa powder", "boiling water"], "cocoa"],
+  [["ground coffee", "boiling water"], "coffee"],
+  [["coffee", "milk"], "latte"],
+  [["earth", "fruit"], "vegetable"],
+  [["bread", "furnace"], "toast"],
+  [["bread", "meat"], "sandwich"],
+  [["bread", "cheese"], "sandwich"],
+  [["bread", "blue cheese"], "sandwich"],
+  [["bread", "sausage"], "sandwich"],
+  [["bread", "cutlet"], "sandwich"],
+  [["bread", "jam"], "sandwich"],
+  [["bread", "nut butter"], "sandwich"],
+  [["bread", "fried fish"], "sandwich"],
+  [["toast", "meat"], "sandwich"],
+  [["toast", "cheese"], "sandwich"],
+  [["toast", "blue cheese"], "sandwich"],
+  [["toast", "sausage"], "sandwich"],
+  [["toast", "cutlet"], "sandwich"],
+  [["toast", "jam"], "sandwich"],
+  [["toast", "nut butter"], "sandwich"],
+  [["toast", "fried fish"], "sandwich"],
+  [["pita", "kebab"], "shawerma"],
+  [["chocolate", "furnace"], "hot chocolate"],
+  [["chocolate", "ice cream"], "eskimo"],
+  [["chocolate", "nut"], "chocolate bar"],
+  [["chocolate", "cake"], "muffin"],
+  [["vegetable", "furnace"], "french fries"],
+  [["vegetable", "tool"], "salad"],
+  [["vegetable", "boiling water"], "soup"],
+  [["vegetable", "sauce"], "ketchup"],
 ];
 
 export const recipesByElement: RecipesByElementType = {};
@@ -243,3 +328,19 @@ recipes.forEach(([reagents, result]) => {
   };
   secondReagentDict[reagents[0]] = result;
 });
+
+for (let reagent in recipesByElement) {
+  const strictReagent = reagent as ElementType;
+  const reagentDict = recipesByElement[strictReagent];
+  if (reagentDict && !reagentDict?.furnace) {
+    reagentDict.furnace = "burned something";
+  }
+}
+
+for (let element in allElements) {
+  const strictElement = element as ElementType;
+  const furnaceDict = recipesByElement.furnace;
+  if (furnaceDict && !(strictElement in furnaceDict)) {
+    furnaceDict[strictElement] = "burned something";
+  }
+}

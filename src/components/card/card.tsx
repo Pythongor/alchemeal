@@ -59,7 +59,7 @@ const Card: React.FC<CardProps> = ({
       <div className={styles["card_image-wrapper"]}>
         <img
           className={styles.card_image}
-          src={imgs[title.replace(" ", "")]}
+          src={imgs[title.replace(" ", "").replace("-", "_")]}
           alt=""
         ></img>
       </div>
