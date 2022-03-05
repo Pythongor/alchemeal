@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./header.module.scss";
+import styles from "./credits.module.scss";
 
 const links: { href: string; text: string }[] = [
   {
@@ -166,16 +166,26 @@ const links: { href: string; text: string }[] = [
     href: "https://www.flaticon.com/authors/smalllikeart",
     text: "smalllikeart",
   },
+  {
+    href: "https://www.flaticon.com/authors/google",
+    text: "google",
+  },
+  {
+    href: "https://www.flaticon.com/authors/dave-gandy",
+    text: "Dave Gandy",
+  },
 ];
 
-export const Congrats = () => {
+const Congrats = () => {
   return (
     <div className={styles.wrapper}>
       {links.map(({ href, text }) => (
-        <a className={styles.link} href={href}>
+        <a className={styles.link} href={href} key={text}>
           {text}
         </a>
       ))}
     </div>
   );
 };
+
+export default Congrats;

@@ -1,0 +1,182 @@
+@import "../../assets/styles/constants.scss";
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 650px;
+  @media (max-width: 980px) {
+    width: 550px;
+  }
+  @media (max-width: 830px) {
+    width: 280px;
+  }
+}
+
+.icon {
+  display: none;
+  height: 40px;
+  width: 40px;
+  background-position: 100%;
+  background-size: cover;
+  filter: $cyanFilter;
+  @media (max-width: 980px) {
+    height: 30px;
+    width: 30px;
+  }
+  @media (max-width: 830px) {
+    display: block;
+    height: 25px;
+    width: 25px;
+  }
+  @media (max-width: 400px) {
+    height: 15px;
+    width: 15px;
+  }
+  @media (max-width: 320px) {
+    height: 12px;
+    width: 12px;
+  }
+  &__reset {
+    background-image: url("../../assets/images/UIicons/reset.png");
+    filter: $meatFilter;
+    display: block;
+    @media (max-width: 400px) {
+      height: 20px;
+      width: 20px;
+    }
+    @media (max-width: 320px) {
+      height: 15px;
+      width: 15px;
+    }
+  }
+  &__hide {
+    background-image: url("../../assets/images/UIicons/hide.png");
+  }
+  &__show {
+    background-image: url("../../assets/images/UIicons/show.png");
+  }
+  &__ignore {
+    background-image: url("../../assets/images/UIicons/ignore.png");
+  }
+  &__sort_alphabet {
+    background-image: url("../../assets/images/UIicons/sort_alphabet.png");
+  }
+  &__sort_type {
+    background-image: url("../../assets/images/UIicons/sort_type.png");
+  }
+  &__sort_time {
+    background-image: url("../../assets/images/UIicons/sort_time.png");
+  }
+}
+
+.reset {
+  padding: 0 5px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $meatBackground;
+  border: 5px solid $meatText;
+  @media (max-width: 980px) {
+    height: 40px;
+  }
+  @media (max-width: 400px) {
+    border-width: 3px;
+    height: 35px;
+    width: 35px;
+  }
+  @media (max-width: 320px) {
+    height: 30px;
+    width: 30px;
+  }
+  &:active {
+    background-color: $animalText;
+    border-color: $animalBackground;
+  }
+  &:hover .icon {
+    filter: $yellowFilter;
+  }
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  border-radius: 10px;
+  background-color: $green;
+  border: 5px solid $darkGreen;
+  width: 220px;
+  height: 50px;
+  &:hover &_text {
+    color: $animalBackground;
+  }
+  &:hover .icon {
+    filter: $yellowFilter;
+  }
+  &:active {
+    background-color: $animalText;
+    border-color: $animalBackground;
+  }
+  @media (max-width: 980px) {
+    width: 190px;
+    height: 40px;
+  }
+  @media (max-width: 830px) {
+    width: initial;
+  }
+  @media (max-width: 400px) {
+    border-width: 3px;
+    height: 35px;
+    width: 35px;
+  }
+  @media (max-width: 320px) {
+    height: 30px;
+    width: 30px;
+  }
+  &_text {
+    color: $cyan;
+    font-size: 20px;
+    font-family: "Rowdies";
+    @media (max-width: 980px) {
+      font-size: 17px;
+    }
+    @media (max-width: 830px) {
+      display: none;
+    }
+  }
+}
+
+.scores {
+  font-family: "Rowdies";
+  font-size: 35px;
+  line-height: 50px;
+  color: $green;
+  &__completed {
+    color: $animalBackground;
+    text-shadow: 0px 0px 10px $animalBackground;
+    animation: completed 2s infinite;
+  }
+  @media (max-width: 980px) {
+    font-size: 26px;
+  }
+  @media (max-width: 400px) {
+    font-size: 20px;
+  }
+  @media (max-width: 320px) {
+    font-size: 16px;
+  }
+}
+
+@keyframes completed {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: none;
+  }
+}

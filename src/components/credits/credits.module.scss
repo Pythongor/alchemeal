@@ -1,0 +1,32 @@
+@import "../../assets/styles/constants.scss";
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  justify-content: center;
+  max-height: 400px;
+  overflow-y: auto;
+  box-shadow: 0px 5px 10px 12px rgb(34, 60, 80) inset;
+  border: 3px solid $green;
+  border-radius: 10px;
+}
+
+.link {
+  text-decoration: none;
+  padding: 0 5px;
+  border-radius: 10px;
+  background-color: $green;
+  border: 5px solid $darkGreen;
+  font-family: "Rowdies";
+  font-size: 20px;
+  color: $cyan;
+  margin: 10px;
+  &:hover {
+    color: $animalBackground;
+  }
+  &:active {
+    background-color: $animalText;
+    border-color: $animalBackground;
+  }
+}

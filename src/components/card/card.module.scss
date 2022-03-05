@@ -21,8 +21,7 @@
       color: $animalText;
     }
     .card_image {
-      filter: invert(14%) sepia(22%) saturate(5628%) hue-rotate(25deg)
-        brightness(87%) contrast(86%);
+      filter: $animalFilter;
     }
   }
   &__bakery {
@@ -32,8 +31,7 @@
       color: $bakeryText;
     }
     .card_image {
-      filter: invert(14%) sepia(22%) saturate(5628%) hue-rotate(25deg)
-        brightness(87%) contrast(86%);
+      filter: $bakeryFilter;
     }
   }
   &__drink {
@@ -43,8 +41,7 @@
       color: $drinkText;
     }
     .card_image {
-      filter: invert(19%) sepia(62%) saturate(555%) hue-rotate(151deg)
-        brightness(91%) contrast(87%);
+      filter: $drinkFilter;
     }
   }
   &__fastfood {
@@ -54,8 +51,7 @@
       color: $fastfoodText;
     }
     .card_image {
-      filter: invert(20%) sepia(52%) saturate(934%) hue-rotate(356deg)
-        brightness(101%) contrast(90%);
+      filter: $fastfoodFilter;
     }
   }
   &__inedible {
@@ -65,8 +61,7 @@
       color: $inedibleText;
     }
     .card_image {
-      filter: invert(17%) sepia(14%) saturate(764%) hue-rotate(195deg)
-        brightness(96%) contrast(90%);
+      filter: $inedibleFilter;
     }
   }
   &__meat {
@@ -76,8 +71,7 @@
       color: $meatText;
     }
     .card_image {
-      filter: invert(13%) sepia(28%) saturate(1950%) hue-rotate(321deg)
-        brightness(86%) contrast(94%);
+      filter: $meatFilter;
     }
   }
   &__milk {
@@ -87,8 +81,7 @@
       color: $milkText;
     }
     .card_image {
-      filter: invert(36%) sepia(22%) saturate(411%) hue-rotate(121deg)
-        brightness(90%) contrast(84%);
+      filter: $milkFilter;
     }
   }
   &__other {
@@ -98,8 +91,7 @@
       color: $otherText;
     }
     .card_image {
-      filter: invert(13%) sepia(37%) saturate(4868%) hue-rotate(292deg)
-        brightness(92%) contrast(96%);
+      filter: $otherFilter;
     }
   }
   &__plant {
@@ -109,8 +101,7 @@
       color: $plantText;
     }
     .card_image {
-      filter: invert(20%) sepia(62%) saturate(287%) hue-rotate(87deg)
-        brightness(100%) contrast(92%);
+      filter: $plantFilter;
     }
   }
   &__sweet {
@@ -120,8 +111,7 @@
       color: $sweetText;
     }
     .card_image {
-      filter: invert(14%) sepia(52%) saturate(1336%) hue-rotate(250deg)
-        brightness(96%) contrast(91%);
+      filter: $sweetFilter;
     }
   }
   &__vegan {
@@ -131,8 +121,7 @@
       color: $veganText;
     }
     .card_image {
-      filter: invert(20%) sepia(62%) saturate(287%) hue-rotate(87deg)
-        brightness(100%) contrast(92%);
+      filter: $veganFilter;
     }
   }
   &__faded {

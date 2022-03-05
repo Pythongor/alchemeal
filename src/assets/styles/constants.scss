@@ -22,6 +22,34 @@ $plantText: #3a4431;
 $sweetText: #4b2659;
 $veganText: #294833;
 
+$animalFilter: invert(14%) sepia(9%) saturate(3640%) hue-rotate(314deg)
+  brightness(98%) contrast(97%);
+$bakeryFilter: invert(14%) sepia(22%) saturate(5628%) hue-rotate(25deg)
+  brightness(87%) contrast(86%);
+$drinkFilter: invert(19%) sepia(62%) saturate(555%) hue-rotate(151deg)
+  brightness(91%) contrast(87%);
+$fastfoodFilter: invert(20%) sepia(52%) saturate(934%) hue-rotate(356deg)
+  brightness(101%) contrast(90%);
+$inedibleFilter: invert(17%) sepia(14%) saturate(764%) hue-rotate(195deg)
+  brightness(96%) contrast(90%);
+$meatFilter: invert(13%) sepia(28%) saturate(1950%) hue-rotate(321deg)
+  brightness(86%) contrast(94%);
+$milkFilter: invert(36%) sepia(22%) saturate(411%) hue-rotate(121deg)
+  brightness(90%) contrast(84%);
+$otherFilter: invert(13%) sepia(37%) saturate(4868%) hue-rotate(292deg)
+  brightness(92%) contrast(96%);
+$plantFilter: invert(20%) sepia(62%) saturate(287%) hue-rotate(87deg)
+  brightness(100%) contrast(92%);
+$sweetFilter: invert(14%) sepia(52%) saturate(1336%) hue-rotate(250deg)
+  brightness(96%) contrast(91%);
+$veganFilter: invert(20%) sepia(62%) saturate(287%) hue-rotate(87deg)
+  brightness(100%) contrast(92%);
+
+$yellowFilter: invert(57%) sepia(10%) saturate(4683%) hue-rotate(25deg)
+  brightness(96%) contrast(88%);
+$cyanFilter: invert(35%) sepia(30%) saturate(419%) hue-rotate(119deg)
+  brightness(93%) contrast(92%);
+
 $darkPurple: #160026;
 $madPurple: #2a093e;
 $darkGreen: #002c30;
