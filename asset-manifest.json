@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/alchemeal/static/css/main.56a570a8.css",
-    "main.js": "/alchemeal/static/js/main.0a246634.js",
+    "main.css": "/alchemeal/static/css/main.bbb68963.css",
+    "main.js": "/alchemeal/static/js/main.da6048bc.js",
     "static/media/LobsterTwo.woff2": "/alchemeal/static/media/LobsterTwo.04a81b4de1d43b4e32da.woff2",
     "static/media/beer.png": "/alchemeal/static/media/beer.a5dd566318c154914130.png",
     "static/media/bacteria.png": "/alchemeal/static/media/bacteria.2569023f872a2355dabb.png",
@@ -53,13 +53,16 @@
     "static/media/sandwich.png": "/alchemeal/static/media/sandwich.6dc7d9c873ddbd0033f5.png",
     "static/media/hot-chocolate.png": "/alchemeal/static/media/hot-chocolate.4db29e7616678816b8a2.png",
     "static/media/cake.png": "/alchemeal/static/media/cake.cff675748915792115a9.png",
+    "static/media/hide.png": "/alchemeal/static/media/hide.f81208327c4061d1c3c5.png",
     "static/media/flour.png": "/alchemeal/static/media/flour.dd399d60ad8e7d14d738.png",
     "static/media/earth.png": "/alchemeal/static/media/earth.7c75bd1edb89248261cf.png",
     "static/media/shawerma.png": "/alchemeal/static/media/shawerma.bb2ebcaa09004f7dc826.png",
     "static/media/coffee bean.png": "/alchemeal/static/media/coffee bean.1fe5eccf0ecc9584fae2.png",
     "static/media/cocoa powder.png": "/alchemeal/static/media/cocoa powder.6aafa0e586c5b58ed3e2.png",
+    "static/media/ignore.png": "/alchemeal/static/media/ignore.32d38dc4fc06883bfbcb.png",
     "static/media/omelette.png": "/alchemeal/static/media/omelette.f25566a845677bbbcec0.png",
     "static/media/dough.png": "/alchemeal/static/media/dough.1cf040370228f6282e27.png",
+    "static/media/show.png": "/alchemeal/static/media/show.5fa153131256e8cbcee2.png",
     "static/media/cider.png": "/alchemeal/static/media/cider.f749ee0746e3bafd8e34.png",
     "static/media/ground coffee.png": "/alchemeal/static/media/ground coffee.1f6c5b5d00a6a66a8ee0.png",
     "static/media/spaghetti.png": "/alchemeal/static/media/spaghetti.3241ab43c7ffb41faaea.png",
@@ -100,11 +103,11 @@
     "static/media/chocolate bar.png": "/alchemeal/static/media/chocolate bar.655054dfce5c45a440d4.png",
     "static/media/sauce.png": "/alchemeal/static/media/sauce.1104d3bcb881b9bbe723.png",
     "index.html": "/alchemeal/index.html",
-    "main.56a570a8.css.map": "/alchemeal/static/css/main.56a570a8.css.map",
-    "main.0a246634.js.map": "/alchemeal/static/js/main.0a246634.js.map"
+    "main.bbb68963.css.map": "/alchemeal/static/css/main.bbb68963.css.map",
+    "main.da6048bc.js.map": "/alchemeal/static/js/main.da6048bc.js.map"
   },
   "entrypoints": [
-    "static/css/main.56a570a8.css",
-    "static/js/main.0a246634.js"
+    "static/css/main.bbb68963.css",
+    "static/js/main.da6048bc.js"
   ]
 }
