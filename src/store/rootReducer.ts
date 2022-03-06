@@ -23,7 +23,7 @@ const initialState: Readonly<StateType> = {
   newResult: null,
   compoundStatus: "0",
   sortBy: "time",
-  deadEndsStatus: "ignore",
+  deadEndsStatus: "show",
   modal: null,
 };
 
@@ -88,7 +88,6 @@ export default createReducer<StateType, ActionType>(initialState)
     const parsedOpenedElements = JSON.parse(oe);
     const parsedDeadEndsStatus = JSON.parse(des);
     const parsedSortBy = JSON.parse(sb);
-    console.log(des, oe, sb);
     if (
       parsedDeadEndsStatus === "hide" ||
       parsedDeadEndsStatus === "show" ||

@@ -1,4 +1,5 @@
 import React from "react";
+import cn from "classnames";
 import { connect } from "react-redux";
 import { Card } from "..";
 import { ElementEntriesType, FoodType } from "recipes";
@@ -38,7 +39,7 @@ const CompoundInfo: React.FC<CompoundInfoProps> = ({
           />
         )}
       </div>
-      <div className={styles.sign}>+</div>
+      <div className={cn(styles.sign, styles.sign__plus)}>+</div>
       <div className={styles["card-holder"]}>
         {secondSelectedElement && (
           <Card

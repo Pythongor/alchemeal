@@ -53,6 +53,10 @@ const App: React.FC<AppProps> = ({
   }, [updateOnLoad]);
 
   useEffect(() => {
+    document.documentElement.requestFullscreen();
+  }, []);
+
+  useEffect(() => {
     setTimeout(() => updateCompoundInfo(), 350);
   }, [compoundStatus, updateCompoundInfo]);
 
