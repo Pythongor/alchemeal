@@ -1,4 +1,4 @@
-@import "../../assets/styles/constants.scss";
+@use "../../assets/styles/constants.scss" as cnst;
 
 .wrapper {
   position: absolute;
@@ -19,15 +19,15 @@
   transform: translate(-50%, -50%);
   width: 500px;
   border-radius: 20px;
-  border: 5px groove $green;
-  background-color: $drinkText;
+  border: 5px groove cnst.$green;
+  background-color: cnst.$drinkText;
   background-image: url(../../assets/images/textures/black-thread-light.png);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow-y: auto;
   padding: 10px;
-  box-shadow: 0px 0px 20px 10px $drinkBackground;
+  box-shadow: 0px 0px 20px 10px cnst.$drinkBackground;
 
   @media (max-width: 600px) {
     width: 400px;
@@ -51,7 +51,7 @@
   overflow-y: auto;
   margin-top: 10px;
   box-shadow: 0px 5px 10px 12px rgb(34, 60, 80) inset;
-  border: 3px solid $green;
+  border: 3px solid cnst.$green;
   border-radius: 10px;
 
   @media (max-width: 500px) {
@@ -63,7 +63,7 @@
   width: 100%;
   text-align: center;
   font-size: 50px;
-  color: $darkGreen;
+  color: cnst.$darkGreen;
   font-family: "Lobster Two";
 
   @media (max-width: 500px) {
@@ -89,12 +89,12 @@
   cursor: pointer;
 
   &:hover {
-    color: $animalBackground;
+    color: cnst.$animalBackground;
   }
 
   &:active {
-    background-color: $animalText;
-    border-color: $animalBackground;
+    background-color: cnst.$animalText;
+    border-color: cnst.$animalBackground;
   }
 
   @media (max-width: 600px) {
@@ -112,13 +112,13 @@
 }
 
 .accept {
-  background-color: $veganBackground;
-  border: 5px solid $veganText;
-  color: $veganText;
+  background-color: cnst.$veganBackground;
+  border: 5px solid cnst.$veganText;
+  color: cnst.$veganText;
 }
 
 .decline {
-  background-color: $meatBackground;
-  border: 5px solid $meatText;
-  color: $meatText;
+  background-color: cnst.$meatBackground;
+  border: 5px solid cnst.$meatText;
+  color: cnst.$meatText;
 }

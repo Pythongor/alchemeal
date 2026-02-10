@@ -1,4 +1,4 @@
-@import "../../assets/styles/constants.scss";
+@use "../../assets/styles/constants.scss" as cnst;
 
 .card {
   margin: 10px;
@@ -49,151 +49,159 @@
   }
 
   &__animal {
-    background-color: $animalBackground;
-    border: 2px solid $animalText;
+    background-color: cnst.$animalBackground;
+    border: 2px solid cnst.$animalText;
 
     .card_title {
-      color: $animalText;
-      text-shadow: 0px 0px 3px $animalTextShadow;
+      color: cnst.$animalText;
+      text-shadow: 0px 0px 3px cnst.$animalTextShadow;
     }
 
     .card_image {
-      filter: $animalFilter;
+      filter: cnst.$animalFilter;
     }
   }
 
   &__bakery {
-    background-color: $bakeryBackground;
-    border: 2px solid $bakeryText;
+    background-color: cnst.$bakeryBackground;
+    border: 2px solid cnst.$bakeryText;
 
     .card_title {
-      color: $bakeryText;
-      text-shadow: 0px 0px 3px $bakeryTextShadow;
+      color: cnst.$bakeryText;
+      text-shadow: 0px 0px 3px cnst.$bakeryTextShadow;
     }
 
     .card_image {
-      filter: $bakeryFilter;
+      filter: cnst.$bakeryFilter;
     }
   }
 
   &__drink {
-    background-color: $drinkBackground;
-    border: 2px solid $drinkText;
+    background-color: cnst.$drinkBackground;
+    border: 2px solid cnst.$drinkText;
 
     .card_title {
-      color: $drinkText;
-      text-shadow: 0px 0px 3px $drinkTextShadow;
+      color: cnst.$drinkText;
+      text-shadow: 0px 0px 3px cnst.$drinkTextShadow;
     }
 
     .card_image {
-      filter: $drinkFilter;
+      filter: cnst.$drinkFilter;
     }
-
   }
+
   &__fastfood {
-    background-color: $fastfoodBackground;
-    border: 2px solid $fastfoodText;
+    background-color: cnst.$fastfoodBackground;
+    border: 2px solid cnst.$fastfoodText;
 
     .card_title {
-      color: $fastfoodText;
-      text-shadow: 0px 0px 3px $fastfoodTextShadow;
+      color: cnst.$fastfoodText;
+      text-shadow: 0px 0px 3px cnst.$fastfoodTextShadow;
     }
 
     .card_image {
-      filter: $fastfoodFilter;
+      filter: cnst.$fastfoodFilter;
     }
   }
+
   &__inedible {
-    background-color: $inedibleBackground;
-    border: 2px solid $inedibleText;
+    background-color: cnst.$inedibleBackground;
+    border: 2px solid cnst.$inedibleText;
 
     .card_title {
-      color: $inedibleText;
-      text-shadow: 0px 0px 3px $inedibleTextShadow;
+      color: cnst.$inedibleText;
+      text-shadow: 0px 0px 3px cnst.$inedibleTextShadow;
     }
 
     .card_image {
-      filter: $inedibleFilter;
+      filter: cnst.$inedibleFilter;
     }
   }
+
   &__meat {
-    background-color: $meatBackground;
-    border: 2px solid $meatText;
+    background-color: cnst.$meatBackground;
+    border: 2px solid cnst.$meatText;
 
     .card_title {
-      color: $meatText;
-      text-shadow: 0px 0px 3px $meatTextShadow;
+      color: cnst.$meatText;
+      text-shadow: 0px 0px 3px cnst.$meatTextShadow;
     }
 
     .card_image {
-      filter: $meatFilter;
+      filter: cnst.$meatFilter;
     }
   }
+
   &__milk {
-    background-color: $milkBackground;
-    border: 2px solid $milkText;
+    background-color: cnst.$milkBackground;
+    border: 2px solid cnst.$milkText;
 
     .card_title {
-      color: $milkText;
-      text-shadow: 0px 0px 3px $milkTextShadow;
+      color: cnst.$milkText;
+      text-shadow: 0px 0px 3px cnst.$milkTextShadow;
     }
 
     .card_image {
-      filter: $milkFilter;
+      filter: cnst.$milkFilter;
     }
   }
+
   &__other {
-    background-color: $otherBackground;
-    border: 2px solid $otherText;
+    background-color: cnst.$otherBackground;
+    border: 2px solid cnst.$otherText;
 
     .card_title {
-      color: $otherText;
-      text-shadow: 0px 0px 3px $otherTextShadow;
+      color: cnst.$otherText;
+      text-shadow: 0px 0px 3px cnst.$otherTextShadow;
     }
 
     .card_image {
-      filter: $otherFilter;
+      filter: cnst.$otherFilter;
     }
   }
+
   &__plant {
-    background-color: $plantBackground;
-    border: 2px solid $plantText;
+    background-color: cnst.$plantBackground;
+    border: 2px solid cnst.$plantText;
 
     .card_title {
-      color: $plantText;
-      text-shadow: 0px 0px 3px $plantTextShadow;
+      color: cnst.$plantText;
+      text-shadow: 0px 0px 3px cnst.$plantTextShadow;
     }
 
     .card_image {
-      filter: $plantFilter;
+      filter: cnst.$plantFilter;
     }
   }
+
   &__sweet {
-    background-color: $sweetBackgriound;
-    border: 2px solid $sweetText;
+    background-color: cnst.$sweetBackgriound;
+    border: 2px solid cnst.$sweetText;
 
     .card_title {
-      color: $sweetText;
-      text-shadow: 0px 0px 3px $sweetTextShadow;
+      color: cnst.$sweetText;
+      text-shadow: 0px 0px 3px cnst.$sweetTextShadow;
     }
 
     .card_image {
-      filter: $sweetFilter;
+      filter: cnst.$sweetFilter;
     }
   }
+
   &__vegan {
-    background-color: $veganBackground;
-    border: 2px solid $veganText;
+    background-color: cnst.$veganBackground;
+    border: 2px solid cnst.$veganText;
 
     .card_title {
-      color: $veganText;
-      text-shadow: 0px 0px 3px $veganTextShadow;
+      color: cnst.$veganText;
+      text-shadow: 0px 0px 3px cnst.$veganTextShadow;
     }
 
     .card_image {
-      filter: $veganFilter;
+      filter: cnst.$veganFilter;
     }
   }
+
   &__none {
     box-shadow: none;
 
@@ -214,18 +222,18 @@
 
   &__selected {
     box-shadow:
-      0px 0px 29px 5px rgba($pink, 0.8),
+      0px 0px 29px 5px rgba(cnst.$pink, 0.8),
       0px 5px 5px 3px;
 
     &:hover {
       box-shadow:
-        0px 0px 29px 5px rgba($pink, 0.8),
+        0px 0px 29px 5px rgba(cnst.$pink, 0.8),
         3px 15px 5px 3px rgba(black, 0.3);
     }
 
     @media (max-width: 600px) {
       box-shadow:
-        0px 0px 20px 5px rgba($pink, 0.8),
+        0px 0px 20px 5px rgba(cnst.$pink, 0.8),
         0px 5px 5px 3px;
     }
   }
@@ -235,7 +243,7 @@
 
     &.card__selected {
       box-shadow:
-        0px 0px 29px 5px rgba($pink, 1),
+        0px 0px 29px 5px rgba(cnst.$pink, 1),
         0px 5px 5px 3px;
     }
 
@@ -248,7 +256,7 @@
 
   &__new-result {
     animation: new_result 1s infinite;
-    box-shadow: 0px 0px 50px 20px $animalBackground;
+    box-shadow: 0px 0px 50px 20px cnst.$animalBackground;
   }
 
   &__decorative {
@@ -260,7 +268,7 @@
 
     &.card__selected {
       box-shadow:
-        0px 0px 29px 5px rgba($pink, 0.8),
+        0px 0px 29px 5px rgba(cnst.$pink, 0.8),
         0px 5px 5px 3px;
     }
   }
@@ -287,6 +295,7 @@
       font-size: 12px;
     }
   }
+
   &_image-wrapper {
     position: absolute;
     width: 100%;
@@ -320,21 +329,21 @@
     top: 50%;
     transform: translate(-50%, -50%);
     font-size: 60px;
-    color: $red;
+    color: cnst.$red;
     user-select: none;
   }
 }
 
 @keyframes new_result {
   0% {
-    box-shadow: 0px 0px 50px 20px $animalBackground;
+    box-shadow: 0px 0px 50px 20px cnst.$animalBackground;
   }
 
   50% {
-    box-shadow: 0px 0px 30px 10px $animalBackground;
+    box-shadow: 0px 0px 30px 10px cnst.$animalBackground;
   }
-  
+
   100% {
-    box-shadow: 0px 0px 50px 20px $animalBackground;
+    box-shadow: 0px 0px 50px 20px cnst.$animalBackground;
   }
 }

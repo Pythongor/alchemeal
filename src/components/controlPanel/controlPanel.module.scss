@@ -1,4 +1,4 @@
-@import "../../assets/styles/constants.scss";
+@use "../../assets/styles/constants.scss" as cnst;
 
 .container {
   display: flex;
@@ -21,7 +21,7 @@
   width: 40px;
   background-position: 100%;
   background-size: cover;
-  filter: $cyanFilter;
+  filter: cnst.$cyanFilter;
 
   @media (max-width: 980px) {
     height: 30px;
@@ -46,7 +46,7 @@
 
   &__reset {
     background-image: url("../../assets/images/UIicons/reset.png");
-    filter: $meatFilter;
+    filter: cnst.$meatFilter;
     display: block;
 
     @media (max-width: 400px) {
@@ -91,8 +91,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $meatBackground;
-  border: 5px solid $meatText;
+  background-color: cnst.$meatBackground;
+  border: 5px solid cnst.$meatText;
   cursor: pointer;
 
   @media (max-width: 980px) {
@@ -111,12 +111,12 @@
   }
 
   &:active {
-    background-color: $animalText;
-    border-color: $animalBackground;
+    background-color: cnst.$animalText;
+    border-color: cnst.$animalBackground;
   }
 
   &:hover .icon {
-    filter: $yellowFilter;
+    filter: cnst.$yellowFilter;
   }
 }
 
@@ -126,23 +126,23 @@
   justify-content: center;
   padding: 0 5px;
   border-radius: 10px;
-  background-color: $green;
-  border: 5px solid $darkGreen;
+  background-color: cnst.$green;
+  border: 5px solid cnst.$darkGreen;
   width: 220px;
   height: 50px;
   cursor: pointer;
 
   &:hover &_text {
-    color: $animalBackground;
+    color: cnst.$animalBackground;
   }
 
   &:hover .icon {
-    filter: $yellowFilter;
+    filter: cnst.$yellowFilter;
   }
 
   &:active {
-    background-color: $animalText;
-    border-color: $animalBackground;
+    background-color: cnst.$animalText;
+    border-color: cnst.$animalBackground;
   }
 
   @media (max-width: 980px) {
@@ -166,7 +166,7 @@
   }
 
   &_text {
-    color: $cyan;
+    color: cnst.$cyan;
     font-size: 20px;
     font-family: "Rowdies";
 
@@ -184,11 +184,11 @@
   font-family: "Rowdies";
   font-size: 35px;
   line-height: 50px;
-  color: $green;
+  color: cnst.$green;
 
   &__completed {
-    color: $animalBackground;
-    text-shadow: 0px 0px 10px $animalBackground;
+    color: cnst.$animalBackground;
+    text-shadow: 0px 0px 10px cnst.$animalBackground;
     animation: completed 2s infinite;
   }
 
@@ -213,7 +213,7 @@
   50% {
     transform: scale(1.3);
   }
-  
+
   100% {
     transform: none;
   }
