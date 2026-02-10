@@ -8,8 +8,8 @@ import * as images from "./cardImages";
 import styles from "./card.module.scss";
 
 type OwnProps = {
-  title: ElementType;
-  type: FoodType;
+  title: ElementType | null;
+  type: FoodType | null;
   isDecorative?: boolean;
   isNewResult?: boolean;
   willUnmount?: boolean;
@@ -34,14 +34,26 @@ const Card: React.FC<CardProps> = ({
   isDeadEnd,
 }) => {
   const [isFaded, setFaded] = useState<boolean>(!willUnmount);
+
   if (isFaded) {
     setTimeout(() => setFaded(false), 100);
   }
+
+  const onClick = () => {
+    if (!title || !type) {
+      return;
+    }
+
+    processSelectedCard([title, type]);
+  };
+
+  const image = title ? imgs[title.replace(" ", "").replace("-", "_")] : "";
+
   return (
     <div
       className={cn(
         styles.card,
-        styles[`card__${type}`],
+        type ? styles[`card__${type}`] : styles.card__none,
         {
           [styles.card__selected]: [
             firstSelectedElement && firstSelectedElement[0],
@@ -51,17 +63,14 @@ const Card: React.FC<CardProps> = ({
         { [styles.card__decorative]: isDecorative },
         { [styles.card__faded]: isFaded || willUnmount },
         { [styles["card__new-result"]]: isNewResult },
-        { [styles["card__dead-end"]]: isDeadEnd }
+        { [styles["card__dead-end"]]: isDeadEnd },
       )}
-      onClick={() => processSelectedCard([title, type])}
+      onClick={onClick}
     >
       <div className={styles.card_title}>{title}</div>
+      {!type && <div className={styles.nothingCreated}>🛇</div>}
       <div className={styles["card_image-wrapper"]}>
-        <img
-          className={styles.card_image}
-          src={imgs[title.replace(" ", "").replace("-", "_")]}
-          alt=""
-        ></img>
+        <img className={styles.card_image} src={image} alt=""></img>
       </div>
     </div>
   );

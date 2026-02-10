@@ -6,73 +6,99 @@
   width: 96px;
   border-radius: 10px;
   background-image: url(../../assets/images/textures/black-thread.png);
-  transition: transform 0.3s, box-shadow 0.2s;
+  transition:
+    transform 0.3s,
+    box-shadow 0.2s;
   position: relative;
+  padding: 0 2px;
   box-shadow: 2px 5px 5px 3px;
+  cursor: pointer;
+
   &:hover {
     filter: contrast(1.75);
-    transform: scale(1.1);
+    transform: scale(1.1) skewY(5deg);
     box-shadow: 3px 15px 5px 3px rgba(black, 0.5);
   }
+
   @media (min-width: 701px) and (max-height: 815px) {
     height: 120px;
     width: 80px;
   }
+
   @media (max-width: 600px) {
     height: 120px;
     width: 80px;
   }
+
   @media (max-width: 500px) {
     height: 100px;
     width: 70px;
     margin: 5px;
   }
+
   @media (max-width: 400px) {
     height: 90px;
     width: 60px;
     border-radius: 7px;
   }
+
   @media (max-width: 300px) {
     height: 80px;
     width: 55px;
     border-radius: 5px;
   }
+
   &__animal {
     background-color: $animalBackground;
     border: 2px solid $animalText;
+
     .card_title {
       color: $animalText;
+      text-shadow: 0px 0px 3px $animalTextShadow;
     }
+
     .card_image {
       filter: $animalFilter;
     }
   }
+
   &__bakery {
     background-color: $bakeryBackground;
     border: 2px solid $bakeryText;
+
     .card_title {
       color: $bakeryText;
+      text-shadow: 0px 0px 3px $bakeryTextShadow;
     }
+
     .card_image {
       filter: $bakeryFilter;
     }
   }
+
   &__drink {
     background-color: $drinkBackground;
     border: 2px solid $drinkText;
+
     .card_title {
       color: $drinkText;
+      text-shadow: 0px 0px 3px $drinkTextShadow;
     }
+
     .card_image {
       filter: $drinkFilter;
     }
+
   }
   &__fastfood {
     background-color: $fastfoodBackground;
     border: 2px solid $fastfoodText;
+
     .card_title {
       color: $fastfoodText;
+      text-shadow: 0px 0px 3px $fastfoodTextShadow;
     }
+
     .card_image {
       filter: $fastfoodFilter;
     }
@@ -80,9 +106,12 @@
   &__inedible {
     background-color: $inedibleBackground;
     border: 2px solid $inedibleText;
+
     .card_title {
       color: $inedibleText;
+      text-shadow: 0px 0px 3px $inedibleTextShadow;
     }
+
     .card_image {
       filter: $inedibleFilter;
     }
@@ -90,9 +119,12 @@
   &__meat {
     background-color: $meatBackground;
     border: 2px solid $meatText;
+
     .card_title {
       color: $meatText;
+      text-shadow: 0px 0px 3px $meatTextShadow;
     }
+
     .card_image {
       filter: $meatFilter;
     }
@@ -100,9 +132,12 @@
   &__milk {
     background-color: $milkBackground;
     border: 2px solid $milkText;
+
     .card_title {
       color: $milkText;
+      text-shadow: 0px 0px 3px $milkTextShadow;
     }
+
     .card_image {
       filter: $milkFilter;
     }
@@ -110,9 +145,12 @@
   &__other {
     background-color: $otherBackground;
     border: 2px solid $otherText;
+
     .card_title {
       color: $otherText;
+      text-shadow: 0px 0px 3px $otherTextShadow;
     }
+
     .card_image {
       filter: $otherFilter;
     }
@@ -120,9 +158,12 @@
   &__plant {
     background-color: $plantBackground;
     border: 2px solid $plantText;
+
     .card_title {
       color: $plantText;
+      text-shadow: 0px 0px 3px $plantTextShadow;
     }
+
     .card_image {
       filter: $plantFilter;
     }
@@ -130,9 +171,12 @@
   &__sweet {
     background-color: $sweetBackgriound;
     border: 2px solid $sweetText;
+
     .card_title {
       color: $sweetText;
+      text-shadow: 0px 0px 3px $sweetTextShadow;
     }
+
     .card_image {
       filter: $sweetFilter;
     }
@@ -140,62 +184,105 @@
   &__vegan {
     background-color: $veganBackground;
     border: 2px solid $veganText;
+
     .card_title {
       color: $veganText;
+      text-shadow: 0px 0px 3px $veganTextShadow;
     }
+
     .card_image {
       filter: $veganFilter;
     }
   }
-  &__faded {
-    transform: scale(0%) rotate(180deg);
-  }
-  &__selected {
-    box-shadow: 0px 0px 29px 5px rgba($pink, 0.8), 0px 5px 5px 3px;
-    &:hover {
-      box-shadow: 0px 0px 29px 5px rgba($pink, 0.8),
-        3px 15px 5px 3px rgba(black, 0.3);
-    }
-    @media (max-width: 600px) {
-      box-shadow: 0px 0px 20px 5px rgba($pink, 0.8), 0px 5px 5px 3px;
-    }
-  }
-  &__dead-end {
-    filter: contrast(0.5) brightness(0.5);
-    &.card__selected {
-      box-shadow: 0px 0px 29px 5px rgba($pink, 1), 0px 5px 5px 3px;
-    }
+  &__none {
+    box-shadow: none;
+
     &:hover {
       filter: contrast(0.7) brightness(0.7);
+      transform: none;
+      box-shadow: none;
     }
   }
+
+  &__faded {
+    transform: scale(0%) rotate(180deg);
+
+    &:hover {
+      transform: scale(0%) rotate(180deg);
+    }
+  }
+
+  &__selected {
+    box-shadow:
+      0px 0px 29px 5px rgba($pink, 0.8),
+      0px 5px 5px 3px;
+
+    &:hover {
+      box-shadow:
+        0px 0px 29px 5px rgba($pink, 0.8),
+        3px 15px 5px 3px rgba(black, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      box-shadow:
+        0px 0px 20px 5px rgba($pink, 0.8),
+        0px 5px 5px 3px;
+    }
+  }
+
+  &__dead-end {
+    filter: contrast(0.5) brightness(0.5);
+
+    &.card__selected {
+      box-shadow:
+        0px 0px 29px 5px rgba($pink, 1),
+        0px 5px 5px 3px;
+    }
+
+    &:hover {
+      filter: contrast(0.5) brightness(0.5);
+      transform: none;
+      box-shadow: 2px 5px 5px 3px;
+    }
+  }
+
   &__new-result {
     animation: new_result 1s infinite;
     box-shadow: 0px 0px 50px 20px $animalBackground;
   }
+
   &__decorative {
     &:hover {
       transform: none;
       transition: filter 0.2s;
       box-shadow: 2px 5px 5px 3px;
     }
+
     &.card__selected {
-      box-shadow: 0px 0px 29px 5px rgba($pink, 0.8), 0px 5px 5px 3px;
+      box-shadow:
+        0px 0px 29px 5px rgba($pink, 0.8),
+        0px 5px 5px 3px;
     }
   }
+
   &_title {
     text-align: center;
-    width: 90%;
+    position: relative;
+    z-index: 1;
     margin: 5px auto;
-    font-size: 20px;
+    font-size: 18px;
     font-family: "Lobster Two";
     word-break: break-word;
+    user-select: none;
+
     @media (max-width: 600px) {
       font-size: 17px;
     }
+
     @media (max-width: 500px) {
       font-size: 15px;
     }
+
     @media (max-width: 300px) {
       font-size: 12px;
     }
@@ -205,21 +292,36 @@
     width: 100%;
     height: 65px;
     bottom: 10px;
+
     @media (max-width: 600px) {
       height: 55px;
     }
+
     @media (max-width: 500px) {
       height: 50px;
       bottom: 5px;
     }
+
     @media (max-width: 300px) {
       height: 40px;
     }
   }
+
   &_image {
     height: 100%;
     margin: 0 auto;
     display: block;
+    user-select: none;
+  }
+
+  .nothingCreated {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: $red;
+    user-select: none;
   }
 }
 
@@ -227,9 +329,11 @@
   0% {
     box-shadow: 0px 0px 50px 20px $animalBackground;
   }
+
   50% {
     box-shadow: 0px 0px 30px 10px $animalBackground;
   }
+  
   100% {
     box-shadow: 0px 0px 50px 20px $animalBackground;
   }
