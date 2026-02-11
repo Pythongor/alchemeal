@@ -46,28 +46,37 @@
   }
 }
 
-.content {
-  max-height: 400px;
-  overflow-y: auto;
-  margin-top: 10px;
-  box-shadow: 0px 5px 10px 12px rgb(34, 60, 80) inset;
-  border: 3px solid cnst.$green;
-  border-radius: 10px;
-
-  @media (max-width: 500px) {
-    max-height: 300px;
-  }
-}
-
 .title {
   width: 100%;
   text-align: center;
   font-size: 50px;
   color: cnst.$darkGreen;
   font-family: "Lobster Two";
+  text-shadow: 0px 0px 10px lightblue;
 
   @media (max-width: 500px) {
     font-size: 40px;
+  }
+}
+
+.content {
+  overflow-y: auto;
+  margin-top: 10px;
+  box-shadow: 0px 5px 10px 12px rgb(34, 60, 80) inset;
+  border: 3px solid cnst.$green;
+  border-radius: 10px;
+  max-height: 400px;
+
+  @media (max-height: 800px) {
+    max-height: 250px;
+  }
+
+  @media (max-height: 600px) {
+    max-height: 160px;
+  }
+
+  @media (max-height: 400px) {
+    max-height: 120px;
   }
 }
 
@@ -97,8 +106,8 @@
     border-color: cnst.$animalBackground;
   }
 
-  @media (max-width: 600px) {
-    width: 180px;
+  @media (max-width: 400px) {
+    width: 100px;
   }
 
   @media (max-width: 500px) {
@@ -106,8 +115,8 @@
     height: 40px;
   }
 
-  @media (max-width: 400px) {
-    width: 100px;
+  @media (max-width: 600px) {
+    width: 180px;
   }
 }
 
