@@ -1,4 +1,5 @@
 @use "../../assets/styles/constants.scss" as cnst;
+@use "../card/card.module.scss" as card;
 
 .wrapper {
   height: fit-content;

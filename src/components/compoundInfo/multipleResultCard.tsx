@@ -27,9 +27,11 @@ const MultipleResultCard: React.FC<MultipleResultCardProps> = ({
   isNewResult,
 }) => {
   const [isFaded, setFaded] = useState<boolean>(!willUnmount);
+
   if (isFaded) {
     setTimeout(() => setFaded(false), 100);
   }
+
   return (
     <div
       className={cn(
@@ -44,7 +46,7 @@ const MultipleResultCard: React.FC<MultipleResultCardProps> = ({
             secondSelectedElement && secondSelectedElement[0],
           ].includes(title),
         },
-        { [styles.card__faded]: isFaded || willUnmount }
+        { [styles.card__faded]: isFaded || willUnmount },
       )}
       onClick={() => processSelectedCard([title, type])}
     >
