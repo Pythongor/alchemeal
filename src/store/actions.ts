@@ -1,9 +1,9 @@
 import { createAction } from "typesafe-actions";
 import { Actions, ModalType } from "./types";
-import { ElementEntriesType } from "recipes";
+import { ElementEntriesType } from "logic/types";
 
 export const processSelectedCard = createAction(
-  Actions.processSelectedCard
+  Actions.processSelectedCard,
 )<ElementEntriesType>();
 
 export const updateCards = createAction(Actions.updateCards)();

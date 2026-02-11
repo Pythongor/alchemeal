@@ -1,5 +1,5 @@
 import { ActionType as ActType } from "typesafe-actions";
-import { ElementType, ElementEntriesType } from "recipes";
+import { Element, ElementEntriesType } from "logic/types";
 import * as actions from "./actions";
 import React from "react";
 
@@ -17,12 +17,12 @@ export type ModalType = {
 } | null;
 
 export type StateType = {
-  openedElements: ElementType[];
-  newOpenedElements: ElementType[] | null;
+  openedElements: Element[];
+  newOpenedElements: Element[] | null;
   firstSelectedElement: ElementEntriesType | null;
   secondSelectedElement: ElementEntriesType | null;
   result: ElementEntriesType | ElementEntriesType[] | null;
-  newResult: ElementType | ElementType[] | null;
+  newResult: Element | Element[] | null;
   compoundStatus: CompoundStatusType;
   sortBy: SortType;
   deadEndsStatus: DeadEndsType;

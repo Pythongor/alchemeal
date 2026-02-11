@@ -1,21 +1,25 @@
-import { ElementType } from "recipes";
-import { recipesByElement, RecipesByElementType } from "recipes";
+import { recipesByElement } from "logic/recipes";
 import { StateType, CompoundStatusType } from "./types";
-import { allElements, ElementEntriesType } from "../recipes";
+import {
+  ElementEntriesType,
+  Element,
+  RecipesByElementType,
+} from "../logic/types";
+import { foodTypesMap } from "../logic/foodTypes";
 
 export const getAvailableRecipes = ({ openedElements }: StateType) => {
   const entries = Object.entries(recipesByElement) as [
-    ElementType,
-    { [key in ElementType]?: ElementType | ElementType[] }[]
+    Element,
+    { [key in Element]?: Element | Element[] }[],
   ][];
   return Object.fromEntries(
-    entries.filter(([key]) => openedElements.includes(key))
+    entries.filter(([key]) => openedElements.includes(key)),
   ) as RecipesByElementType;
 };
 
 export const getSelectedRearrangeType = (
   { secondSelectedElement, firstSelectedElement, newOpenedElements }: StateType,
-  payload: ElementEntriesType
+  payload: ElementEntriesType,
 ): CompoundStatusType => {
   if (newOpenedElements) return "0";
   if (secondSelectedElement && secondSelectedElement[0] === payload[0]) {
@@ -48,11 +52,11 @@ export const computeResult = (state: StateType) => {
     if (availableForFirst && secondSelectedElement[0] in availableForFirst) {
       const resulted = availableForFirst[secondSelectedElement[0]];
       if (typeof resulted === "string") {
-        return [resulted, allElements[resulted]] as ElementEntriesType;
+        return [resulted, foodTypesMap[resulted]] as ElementEntriesType;
       } else if (resulted) {
         return resulted.map((el) => [
           el,
-          allElements[el],
+          foodTypesMap[el],
         ]) as ElementEntriesType[];
       } else return null;
     } else return null;

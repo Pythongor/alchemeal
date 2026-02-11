@@ -3,12 +3,12 @@ import cn from "classnames";
 import { connect } from "react-redux";
 import { StateType } from "store/types";
 import { processSelectedCard } from "store/actions";
-import { ElementType, FoodType } from "recipes";
+import { Element, FoodType } from "logic/types";
 import * as images from "./cardImages";
 import styles from "./card.module.scss";
 
 type OwnProps = {
-  title: ElementType | null;
+  title: Element | null;
   type: FoodType | null;
   isDecorative?: boolean;
   isNewResult?: boolean;

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Card } from "..";
-import { ElementEntriesType, FoodType } from "recipes";
+import { FoodType, ElementEntriesType } from "logic/types";
 import MultipleResultCard from "./multipleResultCard";
 import { StateType } from "store/types";
 import styles from "./compoundInfo.module.scss";

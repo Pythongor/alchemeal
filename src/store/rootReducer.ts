@@ -1,6 +1,7 @@
 import { createReducer } from "typesafe-actions";
 import { ActionType, StateType, SortType, DeadEndsType } from "./types";
-import { startElements, ElementEntriesType, ElementType } from "../recipes";
+import { startElements } from "../logic/foodTypes";
+import { ElementEntriesType, Element } from "../logic/types";
 import {
   processSelectedCard,
   updateCards,
@@ -103,7 +104,7 @@ export default createReducer<StateType, ActionType>(initialState)
       sortBy = parsedSortBy;
     }
     openedElements = [];
-    parsedOpenedElements.forEach((el: ElementType) => {
+    parsedOpenedElements.forEach((el: Element) => {
       openedElements.push(el);
     });
     return {
@@ -130,7 +131,7 @@ export default createReducer<StateType, ActionType>(initialState)
       secondSelectedElement = payload;
       const resulted = computeResult({ ...state, secondSelectedElement });
       if (resulted) {
-        openedElements = [...openedElements] as ElementType[];
+        openedElements = [...openedElements] as Element[];
         result = resulted;
         if (typeof resulted[0] === "string") {
           if (!openedElements.includes(resulted[0])) {
@@ -139,7 +140,7 @@ export default createReducer<StateType, ActionType>(initialState)
           }
         } else {
           result = resulted as ElementEntriesType[];
-          const newResults: ElementType[] = [];
+          const newResults: Element[] = [];
           result.forEach((el) => {
             if (openedElements?.length && !openedElements.includes(el[0])) {
               openedElements.push(el[0]);

@@ -8,7 +8,7 @@ import {
   setModal,
   resetProgress,
 } from "store/actions";
-import { elementsList } from "recipes";
+import { elementsLength } from "logic/foodTypes";
 import { StateType } from "store/types";
 import styles from "./app.module.scss";
 import { CardsPlayground, Header, CompoundInfo, Modal } from "..";
@@ -35,7 +35,7 @@ const App: React.FC<AppProps> = ({
   }, [newOpenedElements, updateCards]);
 
   useEffect(() => {
-    if (openedElements.length === elementsList.length) {
+    if (openedElements.length === elementsLength) {
       setModal({
         isDialog: true,
         acceptFunc: () => {
@@ -68,7 +68,7 @@ const App: React.FC<AppProps> = ({
         const isElementCard = [...element.classList].some(
           (className) =>
             className.includes("card_card_") ||
-            className.includes("compoundInfo_multiple-result")
+            className.includes("compoundInfo_multiple-result"),
         );
         if (!isElementCard && element.tagName !== "BUTTON") resetSelections();
       }}

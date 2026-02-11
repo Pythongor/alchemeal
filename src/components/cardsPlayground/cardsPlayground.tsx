@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { Card } from "..";
-import { allElements, recipesByElement, ElementType } from "recipes";
+import { recipesByElement } from "logic/recipes";
+import { foodTypesMap } from "logic/foodTypes";
+import { Element } from "logic/types";
 import { StateType, SortType } from "store/types";
 import styles from "./cardsPlayground.module.scss";
 
@@ -10,18 +12,18 @@ type DispatchProps = typeof MDTP;
 type CardsPlaygroundProps = StateProps & DispatchProps;
 
 type SortFuncsType = {
-  [key in SortType]: (a: ElementType, b: ElementType) => number;
+  [key in SortType]: (a: Element, b: Element) => number;
 };
-type FilterFuncType = () => (title: ElementType) => boolean;
+type FilterFuncType = () => (title: Element) => boolean;
 
 const sortFuncs: SortFuncsType = {
   time: () => 0,
   alphabet: (a, b) => a[0].localeCompare(b[0]),
   type: (a, b) =>
-    allElements[a].localeCompare(allElements[b]) || a[0].localeCompare(b[0]),
+    foodTypesMap[a].localeCompare(foodTypesMap[b]) || a[0].localeCompare(b[0]),
 };
 
-const isDeadEnd = (title: ElementType, openedElements: ElementType[]) => {
+const isDeadEnd = (title: Element, openedElements: Element[]) => {
   const recipes = recipesByElement[title];
   if (recipes) {
     const availableResults = Object.values(recipes).flat();
@@ -39,26 +41,26 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
   newOpenedElements,
 }) => {
   const [filterFunc, setFilterFunc] = useState<FilterFuncType>(
-    () => (title: ElementType) => true
+    () => (title: Element) => true,
   );
 
   const [isFirstRender, setFirstRender] = useState(true);
 
   useEffect(() => {
     if (deadEndsStatus !== "hide") {
-      setFilterFunc(() => (title: ElementType) => true);
+      setFilterFunc(() => (title: Element) => true);
     } else if (isFirstRender) {
       setFilterFunc(
-        () => (title: ElementType) => !isDeadEnd(title, openedElements)
+        () => (title: Element) => !isDeadEnd(title, openedElements),
       );
       setFirstRender(false);
     } else {
       setTimeout(
         () =>
           setFilterFunc(
-            () => (title: ElementType) => !isDeadEnd(title, openedElements)
+            () => (title: Element) => !isDeadEnd(title, openedElements),
           ),
-        350
+        350,
       );
     }
   }, [deadEndsStatus, openedElements, isFirstRender]);
@@ -87,7 +89,7 @@ const CardsPlayground: React.FC<CardsPlaygroundProps> = ({
           return (
             <Card
               title={title}
-              type={allElements[title]}
+              type={foodTypesMap[title]}
               key={title}
               isNewResult={isNewResult}
               isDeadEnd={

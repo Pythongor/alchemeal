@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import { connect } from "react-redux";
-import { elementsList } from "recipes";
+import { elementsLength } from "logic/foodTypes";
 import {
   setSortType,
   setDeadEndsType,
@@ -25,7 +25,7 @@ const sortsTextes: {
 
 const animate = () => {
   const icon: HTMLDivElement | null = document.querySelector(
-    `.${styles.icon__reset}`
+    `.${styles.icon__reset}`,
   );
   if (icon) {
     const frame = () => {
@@ -84,11 +84,10 @@ const ControlPanel: React.FC<ControlPanelProps> = ({
       </button>
       <div
         className={cn(styles.scores, {
-          [styles.scores__completed]:
-            openedElements.length === elementsList.length,
+          [styles.scores__completed]: openedElements.length === elementsLength,
         })}
       >
-        {openedElements.length}/{elementsList.length}
+        {openedElements.length}/{elementsLength}
       </div>
     </div>
   );
