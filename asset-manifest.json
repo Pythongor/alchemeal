@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/alchemeal/static/css/main.bbb68963.css",
-    "main.js": "/alchemeal/static/js/main.da6048bc.js",
+    "main.css": "/alchemeal/static/css/main.78d66ba0.css",
+    "main.js": "/alchemeal/static/js/main.32c6c533.js",
     "static/media/LobsterTwo.woff2": "/alchemeal/static/media/LobsterTwo.04a81b4de1d43b4e32da.woff2",
     "static/media/beer.png": "/alchemeal/static/media/beer.a5dd566318c154914130.png",
     "static/media/bacteria.png": "/alchemeal/static/media/bacteria.2569023f872a2355dabb.png",
@@ -103,11 +103,11 @@
     "static/media/chocolate bar.png": "/alchemeal/static/media/chocolate bar.655054dfce5c45a440d4.png",
     "static/media/sauce.png": "/alchemeal/static/media/sauce.1104d3bcb881b9bbe723.png",
     "index.html": "/alchemeal/index.html",
-    "main.bbb68963.css.map": "/alchemeal/static/css/main.bbb68963.css.map",
-    "main.da6048bc.js.map": "/alchemeal/static/js/main.da6048bc.js.map"
+    "main.78d66ba0.css.map": "/alchemeal/static/css/main.78d66ba0.css.map",
+    "main.32c6c533.js.map": "/alchemeal/static/js/main.32c6c533.js.map"
   },
   "entrypoints": [
-    "static/css/main.bbb68963.css",
-    "static/js/main.da6048bc.js"
+    "static/css/main.78d66ba0.css",
+    "static/js/main.32c6c533.js"
   ]
 }
