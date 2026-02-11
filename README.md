@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Alchemeal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to **Alchemeal**, a logic-based crafting game built with React. Start with 5 basic elements, experiment with combinations, and discover the entire periodic table of your imagination!
 
-## Available Scripts
+<table><tr><td><img src="./images/desctop.png"></td><td><img src="./images/mobile.png"></td></tr></table>
 
-In the project directory, you can run:
+## 🎮 Gameplay Mechanics
 
-### `npm start`
+The game is divided into three functional areas:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Header & Controls
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The top panel serves as your command center:
 
-### `npm test`
+- **Progress Indicator:** Track how many elements you've discovered out of the total.
+- **Sorting & Filters:** Organize your collection by **Alphabet**, **Element Type**, or **Unlock Order**.
+- **Difficulty Settings:** Manage "Dead-end" elements (those that can't create anything new). You can mark them, hide them, or keep them visible for a harder challenge.
+- **Credits:** Click the game title to see the icons' authors.
+- **Reset:** A dedicated button to wipe progress and start from scratch.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. The Mixing Table
 
-### `npm run build`
+Experimentation happens here. The table features **three slots**:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Slot 1 & 2:** Ingredients selected from your collection by clicking them.
+- **Slot 3 (The Result):** Shows the outcome of the combination:
+  - **Single Card:** A new or existing element discovered.
+  - **List of Cards:** Some combinations yield multiple results!
+  - **🛇 Symbol:** Indicates a failed experiment (no combination possible).
+  - ✨ **Golden Glow:** Newly discovered elements are highlighted with a gold effect.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. Collection Field
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This is your library of discovered elements. Simply click a card in your collection to move it to the mixing table. You can toggle the visibility of "dead-end" cards from the header to clean up your workspace.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 🛠 Tech Stack
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This project was built to demonstrate modern frontend development practices:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- **Core:** [React](https://reactjs.org/) (Functional Components, Hooks)
+- **State Management:** [Redux](https://redux.js.org/) (Handling complex crafting logic and progress persistence)
+- **Type Safety:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [SCSS](https://sass-lang.com/) (Modular styles)
+- **Deployment:** [GitHub Pages](https://pages.github.com/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## 🚀 Live Demo
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Check out the game here: **[Alchemeal](https://pythongor.github.io/alchemeal/)**
