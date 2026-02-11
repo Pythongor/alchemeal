@@ -1,13 +1,14 @@
 import { createStore, applyMiddleware, Middleware } from "redux";
 import { StateType } from "./types";
-import reducer from "./rootReducer";
+import reducer, { initialState } from "./rootReducer";
+
+const fieldsToSave = ["deadEndsStatus", "openedElements", "sortBy"];
 
 const customMiddleWare: Middleware<{}, StateType> =
-  (store) => (dispath) => (action) => {
-    dispath(action);
+  (store) => (dispatch) => (action) => {
+    dispatch(action);
 
     const currentState = store.getState();
-    const fieldsToSave = ["deadEndsStatus", "openedElements", "sortBy"];
     let stateKey: keyof StateType;
 
     for (stateKey in currentState) {
@@ -16,4 +17,19 @@ const customMiddleWare: Middleware<{}, StateType> =
     }
   };
 
-export const store = createStore(reducer, applyMiddleware(customMiddleWare));
+const loadInitialState = (): StateType => {
+  try {
+    return fieldsToSave.reduce((acc, key) => {
+      const item = localStorage.getItem(key);
+      return item ? { ...acc, [key]: JSON.parse(item) } : acc;
+    }, initialState);
+  } catch (e) {
+    return initialState;
+  }
+};
+
+export const store = createStore(
+  reducer,
+  loadInitialState(),
+  applyMiddleware(customMiddleWare),
+);

@@ -22,9 +22,8 @@ const App: React.FC<AppProps> = ({
   compoundStatus,
   openedElements,
   updateCards,
-  updateCompoundInfo,
+  updateCompoundSection,
   resetSelections,
-  updateOnLoad,
   setModal,
   resetProgress,
 }) => {
@@ -49,16 +48,12 @@ const App: React.FC<AppProps> = ({
   }, [openedElements, setModal, resetProgress]);
 
   useEffect(() => {
-    updateOnLoad(localStorage);
-  }, [updateOnLoad]);
-
-  useEffect(() => {
     document.documentElement.requestFullscreen();
   }, []);
 
   useEffect(() => {
-    setTimeout(() => updateCompoundInfo(), 350);
-  }, [compoundStatus, updateCompoundInfo]);
+    setTimeout(() => updateCompoundSection(), 350);
+  }, [compoundStatus, updateCompoundSection]);
 
   return (
     <div
@@ -95,9 +90,8 @@ const MSTP = ({
 
 const MDTP = {
   updateCards,
-  updateCompoundInfo: updateCompoundSection,
+  updateCompoundSection,
   resetSelections,
-  updateOnLoad,
   setModal,
   resetProgress,
 };

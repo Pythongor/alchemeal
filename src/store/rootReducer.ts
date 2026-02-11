@@ -15,14 +15,13 @@ import {
   resetSelections,
   setSortOrder,
   setDeadEndsVisibility,
-  updateOnLoad,
   resetProgress,
   setModal,
 } from "./actions";
 import { computeResult, getSelectedRearrangeType } from "./selectors";
-import { nexSortTypes, nextDeadEndsTypes, parseJSONToState } from "./helpers";
+import { nexSortTypes, nextDeadEndsTypes } from "./utilities";
 
-const initialState: Readonly<StateType> = {
+export const initialState: Readonly<StateType> = {
   openedElements: startElements,
   newOpenedElements: null,
   firstSelectedElement: null,
@@ -83,10 +82,6 @@ export default createReducer<StateType, ActionType>(initialState)
         newOpenedElements: null,
       };
     } else return state;
-  })
-
-  .handleAction(updateOnLoad, (state, { payload }) => {
-    return { ...state, ...parseJSONToState(state, payload) };
   })
 
   .handleAction(processSelectedCard, (state, { payload }) => {
