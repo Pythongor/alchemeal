@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Card } from "..";
 import { FoodType, ElementEntriesType } from "logic/types";
 import MultipleResultCard from "./multipleResultCard";
-import { StateType } from "store/types";
+import { CompoundStatus, StateType } from "store/types";
 import styles from "./compoundInfo.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
@@ -22,9 +22,7 @@ const ResultInfo: React.FC<ResultInfoProps> = ({
       : (result as ElementEntriesType[])
     : null;
 
-  const secondWillUnmount = ["-1", "-2", "1=2 -2", "1", "-", "!"].includes(
-    compoundStatus,
-  );
+  const secondWillUnmount = compoundStatus !== CompoundStatus.NoChange;
 
   if (!results) {
     if (secondSelectedElement) {

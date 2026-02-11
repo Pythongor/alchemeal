@@ -3,7 +3,7 @@ import cn from "classnames";
 import { connect } from "react-redux";
 import { Card } from "..";
 import ResultInfo from "./resultInfo";
-import { StateType } from "store/types";
+import { StateType, CompoundStatus } from "store/types";
 import styles from "./compoundInfo.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
@@ -15,10 +15,12 @@ const CompoundInfo: React.FC<CompoundInfoProps> = ({
   secondSelectedElement,
   compoundStatus,
 }) => {
-  const firstWillUnmount = ["-1", "1=2 -2"].includes(compoundStatus);
-  const secondWillUnmount = ["-1", "-2", "1=2 -2", "1", "-", "!"].includes(
-    compoundStatus,
-  );
+  const firstWillUnmount = [
+    CompoundStatus.RemoveFirst,
+    CompoundStatus.FirstToSecond,
+  ].includes(compoundStatus);
+
+  const secondWillUnmount = compoundStatus !== CompoundStatus.NoChange;
 
   return (
     <div className={styles.wrapper}>

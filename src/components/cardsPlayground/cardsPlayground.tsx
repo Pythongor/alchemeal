@@ -4,7 +4,7 @@ import { Card } from "..";
 import { recipesByElement } from "logic/recipes";
 import { foodTypesMap } from "logic/foodTypes";
 import { Element } from "logic/types";
-import { StateType, SortType } from "store/types";
+import { StateType, SortOrder } from "store/types";
 import styles from "./cardsPlayground.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
@@ -12,7 +12,7 @@ type DispatchProps = typeof MDTP;
 type CardsPlaygroundProps = StateProps & DispatchProps;
 
 type SortFuncsType = {
-  [key in SortType]: (a: Element, b: Element) => number;
+  [key in SortOrder]: (a: Element, b: Element) => number;
 };
 type FilterFuncType = () => (title: Element) => boolean;
 

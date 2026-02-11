@@ -1,5 +1,5 @@
 import { recipesByElement } from "logic/recipes";
-import { StateType, CompoundStatusType } from "./types";
+import { StateType, CompoundStatus } from "./types";
 import {
   ElementEntriesType,
   Element,
@@ -12,6 +12,7 @@ export const getAvailableRecipes = ({ openedElements }: StateType) => {
     Element,
     { [key in Element]?: Element | Element[] }[],
   ][];
+
   return Object.fromEntries(
     entries.filter(([key]) => openedElements.includes(key)),
   ) as RecipesByElementType;
@@ -20,16 +21,17 @@ export const getAvailableRecipes = ({ openedElements }: StateType) => {
 export const getSelectedRearrangeType = (
   { secondSelectedElement, firstSelectedElement, newOpenedElements }: StateType,
   payload: ElementEntriesType,
-): CompoundStatusType => {
-  if (newOpenedElements) return "0";
+): CompoundStatus => {
+  if (newOpenedElements) return CompoundStatus.NoChange;
+
   if (secondSelectedElement && secondSelectedElement[0] === payload[0]) {
-    return "-2";
+    return CompoundStatus.RemoveSecond;
   } else if (
     firstSelectedElement &&
     firstSelectedElement[0] === payload[0] &&
     secondSelectedElement
   ) {
-    return "1=2 -2";
+    return CompoundStatus.FirstToSecond;
   } else if (
     (firstSelectedElement &&
       secondSelectedElement &&
@@ -38,10 +40,10 @@ export const getSelectedRearrangeType = (
       firstSelectedElement[0] !== payload[0] &&
       !secondSelectedElement)
   ) {
-    return "!";
+    return CompoundStatus.NeedRearrange;
   } else if (firstSelectedElement && firstSelectedElement[0] === payload[0]) {
-    return "-1";
-  } else return "1";
+    return CompoundStatus.RemoveFirst;
+  } else return CompoundStatus.FirstSelected;
 };
 
 export const computeResult = (state: StateType) => {
@@ -49,8 +51,10 @@ export const computeResult = (state: StateType) => {
   if (firstSelectedElement && secondSelectedElement) {
     const availableRecipes = getAvailableRecipes(state);
     const availableForFirst = availableRecipes[firstSelectedElement[0]];
+
     if (availableForFirst && secondSelectedElement[0] in availableForFirst) {
       const resulted = availableForFirst[secondSelectedElement[0]];
+
       if (typeof resulted === "string") {
         return [resulted, foodTypesMap[resulted]] as ElementEntriesType;
       } else if (resulted) {

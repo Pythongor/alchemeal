@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   updateCards,
-  updateCompoundInfo,
+  updateCompoundSection,
   updateOnLoad,
   resetSelections,
   setModal,
@@ -95,7 +95,7 @@ const MSTP = ({
 
 const MDTP = {
   updateCards,
-  updateCompoundInfo,
+  updateCompoundInfo: updateCompoundSection,
   resetSelections,
   updateOnLoad,
   setModal,

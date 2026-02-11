@@ -3,11 +3,27 @@ import { Element, ElementEntriesType } from "logic/types";
 import * as actions from "./actions";
 import React from "react";
 
-export type CompoundStatusType = "1=2 -2" | "-2" | "-1" | "0" | "1" | "!" | "-";
+export enum CompoundStatus {
+  FirstToSecond,
+  RemoveSecond,
+  RemoveFirst,
+  NoChange,
+  FirstSelected,
+  NeedRearrange,
+  EmptyResult,
+}
 
-export type SortType = "alphabet" | "type" | "time";
+export enum SortOrder {
+  Alphabet = "alphabet",
+  Type = "type",
+  Time = "time",
+}
 
-export type DeadEndsType = "hide" | "show" | "ignore";
+export enum DeadEndsVisibility {
+  Hide = "hide",
+  Ignore = "ignore",
+  Show = "show",
+}
 
 export type ModalType = {
   text: string;
@@ -23,22 +39,22 @@ export type StateType = {
   secondSelectedElement: ElementEntriesType | null;
   result: ElementEntriesType | ElementEntriesType[] | null;
   newResult: Element | Element[] | null;
-  compoundStatus: CompoundStatusType;
-  sortBy: SortType;
-  deadEndsStatus: DeadEndsType;
+  compoundStatus: CompoundStatus;
+  sortBy: SortOrder;
+  deadEndsStatus: DeadEndsVisibility;
   modal: ModalType;
 };
 
 export enum Actions {
-  processSelectedCard = "PROCESS_SELECTED_CARD",
-  updateCards = "UPDATE_CARDS",
-  updateCompoundInfo = "UPDATE_COMPOUND_INFO",
-  resetSelections = "RESET_SELECTIONS",
-  setSortType = "SET_SORT_TYPE",
-  setDeadEndsType = "SET_DEAD_ENDS_TYPE",
-  updateOnLoad = "UPDATE_ON_LOAD",
-  resetProgress = "RESET_PROGRESS",
-  setModal = "SET_MODAL",
+  ProcessSelectedCard = "PROCESS_SELECTED_CARD",
+  UpdateCards = "UPDATE_CARDS",
+  UpdateCompoundSection = "UPDATE_COMPOUND_SECTION",
+  ResetSelections = "RESET_SELECTIONS",
+  SetSortOrder = "SET_SORT_ORDER",
+  SetDeadEndsVisibility = "SET_DEAD_ENDS_VISIBILITY",
+  UpdateOnLoad = "UPDATE_ON_LOAD",
+  ResetProgress = "RESET_PROGRESS",
+  SetModal = "SET_MODAL",
 }
 
 export type ActionType = ActType<typeof actions>;

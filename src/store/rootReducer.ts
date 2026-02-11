@@ -1,19 +1,26 @@
 import { createReducer } from "typesafe-actions";
-import { ActionType, StateType, SortType, DeadEndsType } from "./types";
+import {
+  ActionType,
+  StateType,
+  SortOrder,
+  DeadEndsVisibility,
+  CompoundStatus,
+} from "./types";
 import { startElements } from "../logic/foodTypes";
 import { ElementEntriesType, Element } from "../logic/types";
 import {
   processSelectedCard,
   updateCards,
-  updateCompoundInfo,
+  updateCompoundSection,
   resetSelections,
-  setSortType,
-  setDeadEndsType,
+  setSortOrder,
+  setDeadEndsVisibility,
   updateOnLoad,
   resetProgress,
   setModal,
 } from "./actions";
 import { computeResult, getSelectedRearrangeType } from "./selectors";
+import { nexSortTypes, nextDeadEndsTypes, parseJSONToState } from "./helpers";
 
 const initialState: Readonly<StateType> = {
   openedElements: startElements,
@@ -22,9 +29,9 @@ const initialState: Readonly<StateType> = {
   secondSelectedElement: null,
   result: null,
   newResult: null,
-  compoundStatus: "0",
-  sortBy: "time",
-  deadEndsStatus: "show",
+  compoundStatus: CompoundStatus.NoChange,
+  sortBy: SortOrder.Time,
+  deadEndsStatus: DeadEndsVisibility.Show,
   modal: null,
 };
 
@@ -39,38 +46,35 @@ export default createReducer<StateType, ActionType>(initialState)
       deadEndsStatus,
     };
   })
+
   .handleAction(resetSelections, (state) => ({
     ...state,
-    compoundStatus: "-1",
+    compoundStatus: CompoundStatus.RemoveFirst,
   }))
+
   .handleAction(setModal, (state, { payload }) => ({
     ...state,
     modal: payload,
   }))
-  .handleAction(setDeadEndsType, (state) => {
+
+  .handleAction(setDeadEndsVisibility, (state) => {
     let { deadEndsStatus } = state;
-    const nextDeadEndsTypes: { [key in DeadEndsType]: DeadEndsType } = {
-      hide: "ignore",
-      ignore: "show",
-      show: "hide",
-    };
+
     return {
       ...state,
       deadEndsStatus: nextDeadEndsTypes[deadEndsStatus],
     };
   })
-  .handleAction(setSortType, (state) => {
+
+  .handleAction(setSortOrder, (state) => {
     let { sortBy } = state;
-    const nexSortTypes: { [key in SortType]: SortType } = {
-      alphabet: "type",
-      type: "time",
-      time: "alphabet",
-    };
+
     return {
       ...state,
       sortBy: nexSortTypes[sortBy],
     };
   })
+
   .handleAction(updateCards, (state) => {
     if (state.newOpenedElements) {
       return {
@@ -80,40 +84,11 @@ export default createReducer<StateType, ActionType>(initialState)
       };
     } else return state;
   })
+
   .handleAction(updateOnLoad, (state, { payload }) => {
-    const { deadEndsStatus: des, openedElements: oe, sortBy: sb } = payload;
-    let { deadEndsStatus, openedElements, sortBy } = state;
-    if (Object.keys(payload).length === 0) {
-      return initialState;
-    }
-    const parsedOpenedElements = JSON.parse(oe);
-    const parsedDeadEndsStatus = JSON.parse(des);
-    const parsedSortBy = JSON.parse(sb);
-    if (
-      parsedDeadEndsStatus === "hide" ||
-      parsedDeadEndsStatus === "show" ||
-      parsedDeadEndsStatus === "exclude"
-    ) {
-      deadEndsStatus = parsedDeadEndsStatus;
-    }
-    if (
-      parsedSortBy === "alphabet" ||
-      parsedSortBy === "type" ||
-      parsedSortBy === "time"
-    ) {
-      sortBy = parsedSortBy;
-    }
-    openedElements = [];
-    parsedOpenedElements.forEach((el: Element) => {
-      openedElements.push(el);
-    });
-    return {
-      ...state,
-      deadEndsStatus,
-      sortBy,
-      openedElements,
-    };
+    return { ...state, ...parseJSONToState(state, payload) };
   })
+
   .handleAction(processSelectedCard, (state, { payload }) => {
     let {
       secondSelectedElement,
@@ -123,13 +98,16 @@ export default createReducer<StateType, ActionType>(initialState)
       newResult,
       compoundStatus,
     } = state;
+
     newResult = null;
     compoundStatus = getSelectedRearrangeType(state, payload);
-    if (compoundStatus === "0") {
+
+    if (compoundStatus === CompoundStatus.NoChange) {
       return state;
-    } else if (compoundStatus === "!") {
+    } else if (compoundStatus === CompoundStatus.NeedRearrange) {
       secondSelectedElement = payload;
       const resulted = computeResult({ ...state, secondSelectedElement });
+
       if (resulted) {
         openedElements = [...openedElements] as Element[];
         result = resulted;
@@ -151,10 +129,11 @@ export default createReducer<StateType, ActionType>(initialState)
             newResult = newResults;
           }
         }
-      } else compoundStatus = "-";
-    } else if (compoundStatus === "1") {
+      } else compoundStatus = CompoundStatus.EmptyResult;
+    } else if (compoundStatus === CompoundStatus.FirstSelected) {
       firstSelectedElement = payload;
     }
+
     return {
       ...state,
       secondSelectedElement,
@@ -165,7 +144,8 @@ export default createReducer<StateType, ActionType>(initialState)
       compoundStatus,
     };
   })
-  .handleAction(updateCompoundInfo, (state) => {
+
+  .handleAction(updateCompoundSection, (state) => {
     let {
       firstSelectedElement,
       secondSelectedElement,
@@ -173,26 +153,34 @@ export default createReducer<StateType, ActionType>(initialState)
       compoundStatus,
       newResult,
     } = state;
-    if (compoundStatus === "-1") newResult = null;
-    if (compoundStatus === "-") result = null;
-    if (compoundStatus === "1=2 -2") {
+
+    if (compoundStatus === CompoundStatus.RemoveFirst) newResult = null;
+
+    if (compoundStatus === CompoundStatus.EmptyResult) result = null;
+
+    if (compoundStatus === CompoundStatus.FirstToSecond) {
       firstSelectedElement = secondSelectedElement;
       secondSelectedElement = null;
       result = null;
-    } else if (["-2", "1=2 -2", "1"].includes(compoundStatus)) {
+    } else if (
+      [CompoundStatus.RemoveSecond, CompoundStatus.FirstSelected].includes(
+        compoundStatus,
+      )
+    ) {
       secondSelectedElement = null;
       result = null;
-    } else if (compoundStatus === "-1") {
+    } else if (compoundStatus === CompoundStatus.RemoveFirst) {
       firstSelectedElement = null;
       secondSelectedElement = null;
       result = null;
     }
+
     return {
       ...state,
       firstSelectedElement,
       secondSelectedElement,
       result,
       newResult,
-      compoundStatus: "0",
+      compoundStatus: CompoundStatus.NoChange,
     };
   });

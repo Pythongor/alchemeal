@@ -3,12 +3,12 @@ import cn from "classnames";
 import { connect } from "react-redux";
 import { elementsLength } from "logic/foodTypes";
 import {
-  setSortType,
-  setDeadEndsType,
+  setSortOrder,
+  setDeadEndsVisibility,
   resetProgress,
   setModal,
 } from "store/actions";
-import { StateType, SortType } from "store/types";
+import { StateType, SortOrder } from "store/types";
 import styles from "./controlPanel.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
@@ -16,7 +16,7 @@ type DispatchProps = typeof MDTP;
 type ControlPanelProps = StateProps & DispatchProps;
 
 const sortsTextes: {
-  [key in SortType]: string;
+  [key in SortOrder]: string;
 } = {
   alphabet: "alphabet",
   type: "type",
@@ -105,6 +105,11 @@ const MSTP = ({
   newOpenedElements,
 });
 
-const MDTP = { setSortType, setDeadEndsType, resetProgress, setModal };
+const MDTP = {
+  setSortType: setSortOrder,
+  setDeadEndsType: setDeadEndsVisibility,
+  resetProgress,
+  setModal,
+};
 
 export default connect(MSTP, MDTP)(ControlPanel);
