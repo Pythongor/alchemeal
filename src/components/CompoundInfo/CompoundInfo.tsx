@@ -2,9 +2,9 @@ import React from "react";
 import cn from "classnames";
 import { connect } from "react-redux";
 import { Card } from "..";
-import ResultInfo from "./resultInfo";
+import ResultInfo from "./ResultInfo";
 import { StateType, CompoundStatus } from "store/types";
-import styles from "./compoundInfo.module.scss";
+import styles from "./CompoundInfo.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
 type DispatchProps = typeof MDTP;

@@ -1,5 +1,4 @@
-import React from "react";
-import styles from "./credits.module.scss";
+import styles from "./Credits.module.scss";
 
 const links: { href: string; text: string }[] = [
   {

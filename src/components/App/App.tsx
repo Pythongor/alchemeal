@@ -3,14 +3,13 @@ import { connect } from "react-redux";
 import {
   updateCards,
   updateCompoundSection,
-  updateOnLoad,
   resetSelections,
   setModal,
   resetProgress,
 } from "store/actions";
 import { elementsLength } from "logic/foodTypes";
 import { StateType } from "store/types";
-import styles from "./app.module.scss";
+import styles from "./App.module.scss";
 import { CardsPlayground, Header, CompoundInfo, Modal } from "..";
 
 type StateProps = ReturnType<typeof MSTP>;

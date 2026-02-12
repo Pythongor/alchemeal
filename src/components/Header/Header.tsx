@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { setModal } from "store/actions";
 import { Credits, ControlPanel } from "..";
-import styles from "./header.module.scss";
+import styles from "./Header.module.scss";
 
 type DispatchProps = typeof MDTP;
 

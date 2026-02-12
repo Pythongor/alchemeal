@@ -2,9 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Card } from "..";
 import { FoodType, ElementEntriesType } from "logic/types";
-import MultipleResultCard from "./multipleResultCard";
+import MultipleResultCard from "./MultipleResultCard";
 import { CompoundStatus, StateType } from "store/types";
-import styles from "./compoundInfo.module.scss";
+import styles from "./CompoundInfo.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
 type DispatchProps = typeof MDTP;

@@ -3,7 +3,7 @@ import cn from "classnames";
 import { connect } from "react-redux";
 import { StateType } from "store/types";
 import { setModal } from "store/actions";
-import styles from "./modal.module.scss";
+import styles from "./Modal.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
 type DispatchProps = typeof MDTP;

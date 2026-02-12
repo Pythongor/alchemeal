@@ -9,7 +9,7 @@ import {
   setModal,
 } from "store/actions";
 import { StateType, SortOrder } from "store/types";
-import styles from "./controlPanel.module.scss";
+import styles from "./ControlPanel.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
 type DispatchProps = typeof MDTP;

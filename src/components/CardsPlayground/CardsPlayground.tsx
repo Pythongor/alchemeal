@@ -5,7 +5,7 @@ import { recipesByElement } from "logic/recipes";
 import { foodTypesMap } from "logic/foodTypes";
 import { Element } from "logic/types";
 import { StateType, SortOrder } from "store/types";
-import styles from "./cardsPlayground.module.scss";
+import styles from "./CardsPlayground.module.scss";
 
 type StateProps = ReturnType<typeof MSTP>;
 type DispatchProps = typeof MDTP;
