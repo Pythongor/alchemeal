@@ -39,7 +39,9 @@ const Card: React.FC<CardProps> = ({
     setTimeout(() => setFaded(false), 100);
   }
 
-  const onClick = () => {
+  const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+
     if (!title || !type) {
       return;
     }

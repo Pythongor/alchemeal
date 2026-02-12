@@ -32,6 +32,11 @@ const MultipleResultCard: React.FC<MultipleResultCardProps> = ({
     setTimeout(() => setFaded(false), 100);
   }
 
+  const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    processSelectedCard([title, type]);
+  };
+
   return (
     <div
       className={cn(
@@ -48,7 +53,7 @@ const MultipleResultCard: React.FC<MultipleResultCardProps> = ({
         },
         { [styles.card__faded]: isFaded || willUnmount },
       )}
-      onClick={() => processSelectedCard([title, type])}
+      onClick={onClick}
     >
       <div className={styles.card_title}>{title}</div>
     </div>

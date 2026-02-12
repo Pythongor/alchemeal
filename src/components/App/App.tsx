@@ -54,19 +54,13 @@ const App: React.FC<AppProps> = ({
     setTimeout(() => updateCompoundSection(), 350);
   }, [compoundStatus, updateCompoundSection]);
 
+  const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const element = e.target as HTMLElement;
+    if (element.tagName !== "BUTTON") resetSelections();
+  };
+
   return (
-    <div
-      className={styles.app}
-      onClick={(ev) => {
-        const element = ev.target as HTMLElement;
-        const isElementCard = [...element.classList].some(
-          (className) =>
-            className.includes("card_card_") ||
-            className.includes("compoundInfo_multiple-result"),
-        );
-        if (!isElementCard && element.tagName !== "BUTTON") resetSelections();
-      }}
-    >
+    <div className={styles.app} onClick={onClick}>
       <Modal />
       <Header />
       <div className={styles.container}>
